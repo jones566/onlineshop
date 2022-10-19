@@ -10,9 +10,10 @@ const connectEnsureLogin = require('connect-ensure-login');
 const passportLocalMongoose = require("passport-local-mongoose");
 
 
-const homeStartingContent = "ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod";
+
 const aboutContent = "An atom is the smallest particle of an element that can take part in a chemical reaction";
 const contactContent = "Science is the method of obtaining knowledge through observation and experimentation";
+
  
 
 const app = express();
@@ -62,32 +63,58 @@ app.get("/register",  (req, res) =>{
   res.render("register");
 });
 
-app.get("/home", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
+app.get("/departments",  (req, res) =>{
+  res.render("departments");
+});
+
+app.get("/students",  (req, res) =>{
+  res.render("students");
+});
+
+app.get("/staff",  (req, res) =>{
+  res.render("staff");
+});
+
+app.get("/research",  (req, res) =>{
+  res.render("research");
+});
+
+app.get("/programmes",  (req, res) =>{
+  res.render("programmes");
+});
+
+app.get("/exam_office",  (req, res) =>{
+  res.render("exam_office");
+});
+
+
+app.get("/index", (req, res) => {
    Post.find({}, (err, posts) => {
    	
-   			res.render("home", {startingContent: homeStartingContent, postContent: posts});
+   			res.render("index", {postContent: posts});
    });   
    
 });
-app.get("/about", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
+app.get("/about", (req, res) => {
    res.render("about", {aboutContents: aboutContent});
 });
-app.get("/contact", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
+app.get("/contact", (req, res) => {
    res.render("contact", {contactContents: contactContent});
 });
-app.get("/compose", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
-   res.render("compose");
+app.get("/add_news_blog", (req, res) => {
+   res.render("add_news_blog");
 });
-app.post("/compose", (req, res) => {
+app.post("/add_news_blog", (req, res) => {
   
-  const post = new Post ({
+  const post = new Post (
+    {
     title: req.body.postTitle,
     content: req.body.postBody
-  });
+    });
 
   post.save((err) => {
   	if (!err) {
-  		res.redirect("/home");
+  		res.redirect("/index");
   	}
   });
 
@@ -98,7 +125,7 @@ app.get("/posts/:postId", (req, res) =>{
 const requestedPostId = req.params.postId;
 
   Post.findOne({_id: requestedPostId}, (err, post) =>{
-    res.render("post", {
+    res.render("news", {
       title: post.title,
       content: post.content
     });
@@ -114,7 +141,7 @@ app.post("/register",  (req, res) =>{
       res.redirect("/register");
     } else{
       passport.authenticate("local")(req, res, () =>{
-        res.redirect("/compose");
+        res.redirect("/add_news_blog");
       });
     }
 
@@ -134,7 +161,7 @@ app.post("/login",  (req, res) =>{
       console.log(err);
     } else {
       passport.authenticate("local")(req, res,  () =>{
-        res.redirect("/compose");
+        res.redirect("/add_news_blog");
       });
     }
   });

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PSA_UDS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="fontawesome/css/fontawesome.min.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/about.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+  }
+  #apply{
+    margin-top: 5px;
+    text-decoration: none;
+    border-style: none; 
+    border-radius: 5px;
+  }
+  .apply:hover{
+   color: rgba(75,0,0,25);
+   text-decoration: none;
+  }
+   #UDS_logo{
+    height: 50px;
+    width: 50px;
+    margin-top: 40px;
+   }
+  #search_bar{
+    margin-top: 100px;
+    text-align: right;
+  }
+  #search_button{
+    border-style: none;
+    border-radius: 5px;
+    color: white;
+  }
+  #search_box{
+     border-style: none;
+    border-radius: 5px;
+  }
+  .readmore{
+    background-color: black;
+    color: white;
+    border-style: none;
+    border-radius: 3px;
+  }
+  .news{
+    text-align: center;
+  }
+  body{
+    height: 100vh;
+  }
+  .arrange{
+    display: inline;
+    float: right;
+  }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">
+      	
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index">Home</a></li>
+        <li><a href="about">About Us</a></li>
+        <li><a href="departments">Department</a></li>
+        <li><a href="programmes">Programmes</a></li>
+        <li><a href="students">Students</a></li>
+        <li><a href="exam_office">Exam Office</a></li>
+        <li><a href="research">Research & Collaboration</a></li>
+        <li><a target="_self" href="https://www.uds.edu.gh/schools-and-faculties/spps">Staff</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li id="apply">
+          <button type="submit" id="apply" style="background-color: green">
+            <a href="https://www.uds.edu.gh/admissions/how-to-apply/" class="apply" style="color: black">Apply for a programme</a>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div  style="background-color: yellow">
+  <div class="container text-center" style="text-align: left">
+    <div class="row">
+      <div class="col-sm-4"><a href="index"><img src="./images/uds.png" id="UDS_logo"></a></div>
+	    <div class="col-sm-4">
+        <h3>FACULTY OF PHARMACY<br>& PHARMACEUTICAL SCIENCES</h3>
+	      <h5>UNIVERSITY FOR DEVELOPMENT STUDIES</h5>
+      </div>
+	    <div class="col-sm-4" id="search_bar">
+        <input type="search" name="search" placeholder="Type here" id="search_box">
+        <button type="submit" style="background-color: black" id="search_button">search</button>
+      </div>
+    </div>
+  </div>
+</div><br>
