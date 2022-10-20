@@ -33,8 +33,9 @@ app.use(passport.session());
 mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/blogDB");
 
 const postSchema = new mongoose.Schema({
-  title: String,
-  content: String 
+  title: {type: String},
+  content: {type: String},
+  picture: {type: String} 
 });
 
 const Post = mongoose.model("Post", postSchema);
@@ -109,7 +110,8 @@ app.post("/add_news_blog", (req, res) => {
   const post = new Post (
     {
     title: req.body.postTitle,
-    content: req.body.postBody
+    content: req.body.postBody,
+    picture: req.body.picture
     });
 
   post.save((err) => {
@@ -127,7 +129,8 @@ const requestedPostId = req.params.postId;
   Post.findOne({_id: requestedPostId}, (err, post) =>{
     res.render("news", {
       title: post.title,
-      content: post.content
+      content: post.content,
+      picture: post.picture
     });
   });
 

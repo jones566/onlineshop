@@ -84,7 +84,7 @@
                 <%postContent.forEach((post) => {%>
                     
                     <h1><%=post.title%></h1>
-    
+                    <div><img src="<%=post.picture%>" style="height: 200px; width: 200px;"></div>
                     <p><%=post.content.substring(10,100) +  "..."%><a href="posts/<%=post._id%>">Readmore</a></p>
                 <%});%>
             </div>
@@ -97,7 +97,7 @@
                 <%postContent.forEach((post) => {%>
                   
                     <h1><%=post.title%></h1>
-    
+                    <div><img src="<%=post.picture%>" style="height: 200px; width: 200px;"></div>
                     <p><%=post.content.substring(10,100) +  "..."%><a href="posts/<%=post._id%>">Readmore</a></p>
                 <%});%>
             </div>
