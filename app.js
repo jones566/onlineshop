@@ -127,13 +127,12 @@ app.get("/add_news_blog", (req, res) => {
    res.render("add_news_blog");
 });
 app.post("/add_news_blog", upload, (req, res) => {
-     app.locals.postTitle=req.body.postTitle
-     app.locals.postBody=req.body.postBody
+     
   const post = new Post (
      
     {
-    title: app.locals.postTitle,
-    content: app.locals.postBody,
+    title: req.body.postTitle,
+    content: req.body.postBody,
     image: req.file.filename
     });
 
