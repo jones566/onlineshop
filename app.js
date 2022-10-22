@@ -2,6 +2,9 @@ require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const fs = require('fs');
+const path = require('path');
+const multer = require('multer');
 const _ = require("lodash");
 const mongoose = require("mongoose");
 const session = require('express-session');
@@ -30,12 +33,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/blogDB");
+mongoose.connect(process.env.MONGO_URL);
 
 const postSchema = new mongoose.Schema({
   title: {type: String},
   content: {type: String},
-  picture: {type: String} 
+  image:
+    {
+        type: String,
+        default: ""
+    } 
 });
 
 const Post = mongoose.model("Post", postSchema);
@@ -54,6 +61,19 @@ passport.use(Security.createStrategy());
 passport.serializeUser(Security.serializeUser());
 
 passport.deserializeUser(Security.deserializeUser());
+
+
+  
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now() + '_' + file.originalname);
+    }
+});
+  
+const upload = multer({ storage: storage }).single('image');
 
 app.get("/login", (req, res) => {
   res.render("login");
@@ -105,13 +125,13 @@ app.get("/contact", (req, res) => {
 app.get("/add_news_blog", (req, res) => {
    res.render("add_news_blog");
 });
-app.post("/add_news_blog", (req, res) => {
+app.post("/add_news_blog", upload, (req, res) => {
   
   const post = new Post (
     {
     title: req.body.postTitle,
     content: req.body.postBody,
-    picture: req.body.picture
+    image: req.file.filename
     });
 
   post.save((err) => {
@@ -130,7 +150,7 @@ const requestedPostId = req.params.postId;
     res.render("news", {
       title: post.title,
       content: post.content,
-      picture: post.picture
+      image: post.image
     });
   });
 
