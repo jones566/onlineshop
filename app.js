@@ -23,6 +23,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+app.use(express.static("images"))
 
 app.use(session({
   secret: "Our little secret.",
@@ -66,7 +67,7 @@ passport.deserializeUser(Security.deserializeUser());
   
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './images')
+        cb(null, 'images')
     },
     filename: (req, file, cb) => {
         cb(null, file.fieldname + '-' + Date.now() + '_' + file.originalname);
@@ -126,11 +127,12 @@ app.get("/add_news_blog", (req, res) => {
    res.render("add_news_blog");
 });
 app.post("/add_news_blog", upload, (req, res) => {
-  
+  res.locals.postBody = req.body.postBody
   const post = new Post (
+    
     {
     title: req.body.postTitle,
-    content: req.body.postBody,
+    content: res.locals.postBody,
     image: req.file.filename
     });
 
