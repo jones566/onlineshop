@@ -100,7 +100,7 @@
                   
                     <h1><%=post.title%></h1>
                     <div>
-                      <img src="<%=post.image%>">
+                      <img src="<%=post.image%>" style="height: 200px; width: 200px;">
                     </div>
                     <p><%=post.content.substring(10,100) +  "..."%><a href="posts/<%=post._id%>">Readmore</a></p>
                 <%});%>
