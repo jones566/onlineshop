@@ -95,13 +95,13 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index">Home</a></li>
-        <li><a href="about">About Us</a></li>
-        <li><a href="departments">Department</a></li>
-        <li><a href="programmes">Programmes</a></li>
-        <li><a href="students">Students</a></li>
-        <li><a href="exam_office">Exam Office</a></li>
-        <li><a href="research">Research & Collaboration</a></li>
+        <li class="active"><a href="../index">Home</a></li>
+        <li><a href="../about">About Us</a></li>
+        <li><a href="../departments">Department</a></li>
+        <li><a href="../programmes">Programmes</a></li>
+        <li><a href="../students">Students</a></li>
+        <li><a href="../exam_office">Exam Office</a></li>
+        <li><a href="../research">Research & Collaboration</a></li>
         <li><a target="_self" href="https://www.uds.edu.gh/schools-and-faculties/spps">Staff</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -118,7 +118,7 @@
 <div  style="background-color: yellow">
   <div class="container text-center" style="text-align: left">
     <div class="row">
-      <div class="col-sm-4"><a href="index"><img src="./images/uds.png" id="UDS_logo"></a></div>
+      <div class="col-sm-4"><a href="index"><img src="../images/uds.png" id="UDS_logo"></a></div>
 	    <div class="col-sm-4">
         <h3>FACULTY OF PHARMACY<br>& PHARMACEUTICAL SCIENCES</h3>
 	      <h5>UNIVERSITY FOR DEVELOPMENT STUDIES</h5>
@@ -131,17 +131,139 @@
   </div>
 </div><br>
              
-                 <div class = 'news'>
+                 <div class = 'news '>
+                   
                     <h1 style = 'background-color:green;'>BREAKING NEWS</h1>
+                    
                     <h3 ><u><%=title%></u></h3>
                     <div>
-                       <img src='<%=image%>' style='max-height: 300px;' alt=''>
+                       <img src='../<%=image%>' style='max-height: 300px;' alt=''>
                     <div>
                     <p><%=content%></a></p>
                     <h4><b>Post by:</b>&nbsp<i>$name</i>&nbsp;&nbsp&nbsp<b>Date posted:</b>&nbsp<i>$date</i></h4>
                     <h4><i>For full details click on this link</i> <a href = '$link'>$link</a></h4>
-                    <a href="index" class="apply" style="color: black">Go Back</a>
+                    <a href="../index" class="apply" style="color: black">Go Back</a>
+                  
                 </div>
 
                 
-<%- include('footer') -%>
+
+               <div>
+                <footer id="footer" class="container-fluid text-center" style="background-color: black">
+                  <!-- top footer -->
+                  <div class="section">
+                    <!-- container -->
+                    <div class="container">
+                      <!-- row -->
+                      <div class="row">
+                        
+                        <div class="col-sm-4">
+                          <div class="footer"  style="text-align: left">
+            
+                            <h3 class="footer-title"  style="color: white">Navigation</h3>
+                            
+                            <ul class="footer-links">
+                              <li style="color: white"><a href="../index" class="apply" style="color: white"></i>Home</a></li>
+                              <li style="color: white"><a href="../about" class="apply" style="color: white"><i class="fa fa-phone" style="color: white"></i>About Us</a></li>
+                              <li style="color: white"><a href="../exam_office" class="apply" style="color: white"><i class="fa fa-envelope-o" style="color: white"></i>Exams Office</a></li>
+                              <li style="color: white"><a href="../research" class="apply" style="color: white"><i class="fa fa-envelope-o" style="color: white"></i>Research & Collaboration</a></li>
+                              <li style="color: white"><a href="../staff" class="apply" style="color: white"><i class="fa fa-envelope-o" style="color: white"></i>Staff</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                        
+            
+                        <div class="col-sm-4 text-center">
+                          <div class="footer"  style="text-align: left">
+                            <h3 class="footer-title" style="color: white">Departments</h3>
+                            <ul class="footer-links" class="texts">
+                              <li style="color: white"><a href="../pharm_chem.php" class="apply" style="color: white">Pharmaceutical chemistry</a></li>
+                              <li style="color: white"><a href="../pharmacology.php" class="apply" style="color: white">Pharmacology</a></li>
+                              <li style="color: white"><a href="../pharmaceutics.php" class="apply" style="color: white">Pharmaceutics</a></li>
+                              <li style="color: white"><a href="../departments" class="apply" style="color: white">Herbal Medicine</a></li>
+                              <li style="color: white"><a href="../pharmacognosy.php" class="apply" style="color: white">Pharmacognosy</a></li>
+                              <li style="color: white"><a href="../pharm_practice.php" class="apply" style="color: white">Pharmacy Practice</a></li>
+                            </ul>
+                          </div>
+                        </div>
+            
+                        <div class="col-sm-4">
+                          <div class="footer"  style="text-align: left">
+                            <h3 class="footer-title" style="color: white">Resources</h3>
+                            <ul class="footer-links">
+                              <li style="color: white"><a href="#" class="apply" style="color: white">Staff Portal</a></li>
+                              <li style="color: white"><a href="https://ucm.uds.edu.gh/" class="apply" style="color: white">Students Portal</a></li>
+                              
+                            </ul>
+                          </div>
+                        </div>
+            
+                        <div class="clearfix visible-xs"></div>
+            
+                      
+                      </div>
+                      <!-- /row -->
+                    </div>
+                    <!-- /container -->
+            
+                    <div class="container" style="border-style: ridge;">
+                      <!-- row -->
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="footer"  style="text-align: left">
+                            <h3 class="footer-title" style="color: white">Address</h3>
+                                            <div style="color: white">
+                                              Deans Office<br>Faculty of Pharmacy and Pharmaceutical Sciences<br>
+                                                UDS-Tamale							
+                             </div>
+                          </div>
+                        </div>
+                        
+            
+                        <div class="col-sm-4 text-center">
+                          <div class="footer" style="text-align: left">
+                            <h3 class="footer-title" style="color: white">Telephone</h3>
+                            <p style="color: white">Office of the Dean: +22222222<br>
+                            Pharmaceutics: +22222222<br>
+                            Pharmaceutical Chemistry: +22222222<br>
+                            Pharmacology: +22222222<br>
+                            Pharmacognosy: +22222222<br>
+                            Clinical & Social Pharmacy: +22222222<br>
+                            Herbal Medicine: +22222222</p>
+                          </div>
+                        </div>
+            
+                        <div class="col-sm-4">
+                          <div class="footer"  style="text-align: left">
+                            <h3 class="footer-title" style="color: white">Email address</h3>
+                            <p style="color: white">dean.pharm@uds.edu.gh</p>
+                          </div>
+                        </div>
+            
+                        <div class="clearfix visible-xs"></div>
+            
+                        
+                      </div>
+                      <!-- /row -->
+                    </div>
+                    <!-- /container -->
+                  </div><br>
+                  <!-- /top footer -->
+                            
+            
+                  <!-- bottom footer -->
+                  <span class="copyright" style="color: white">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                             &copy;<script>document.write(new Date().getFullYear());</script> Faculty of Pharmacy and Pharmaceutical Sciences,University For Development Studies,Tamale,Ghana | Developed by Doctor Jones
+                          
+                  </span>
+                  <!-- /bottom footer -->
+                </footer>
+              </div>
+              </body>
+            </html>
+                
+                
+                
+                
+            

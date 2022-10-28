@@ -24,6 +24,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(express.static("images"))
+app.use(express.json());
 
 app.use(session({
   secret: "Our little secret.",
@@ -37,8 +38,8 @@ app.use(passport.session());
 mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/blogDB");
 
 const postSchema = new mongoose.Schema({
-  title: {type: String},
-  content: {type: String},
+  title: String,
+  content: String,
   image:
     {
         type: String,
@@ -135,7 +136,7 @@ app.post("/add_news_blog", upload, (req, res) => {
     content: req.body.postBody,
     image: req.file.filename
     });
-
+    
   post.save((err) => {
   	if (!err) {
   		res.redirect("/index");
@@ -144,11 +145,12 @@ app.post("/add_news_blog", upload, (req, res) => {
 
 });
 
-app.get("/posts/:postId", (req, res) =>{
+app.get("/posts/:postId", (req, res, next) =>{
 
 const requestedPostId = req.params.postId;
 
   Post.findOne({_id: requestedPostId}, (err, post) =>{
+    if (err) return next(err);
     res.render("news", {
       title: post.title,
       content: post.content,
