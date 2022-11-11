@@ -116,7 +116,7 @@ app.get("/logout", logoutRouter);
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = process.env.LOCAL_PORT;
+  port = 3000;
 }
 
 app.listen(port, () => console.log("Server is running on port 3000 and database is connected successfully"));
