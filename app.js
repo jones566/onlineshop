@@ -60,7 +60,7 @@ app.use(express.json());
         passport.deserializeUser(Security.deserializeUser());
 */
 
-mongoose.connect(process.env.MONGO_URL);  //This connects you to atlas
+mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/blogDB");  //This connects you to atlas
 
 //The below lines of code are the APIs Routes
 
