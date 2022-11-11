@@ -1,5 +1,6 @@
 {
   "name": "ejs-challenge",
+  "type": "module",
   "version": "1.0.0",
   "description": "My first blog site.",
   "main": "app.js",

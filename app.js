@@ -1,214 +1,122 @@
-require('dotenv').config();
-const express = require("express");
-const bodyParser = require("body-parser");
-const ejs = require("ejs");
-const fs = require('fs');
-const path = require('path');
-const multer = require('multer');
-const _ = require("lodash");
-const mongoose = require("mongoose");
-const session = require('express-session');
-const passport = require("passport");
-const connectEnsureLogin = require('connect-ensure-login');
-const passportLocalMongoose = require("passport-local-mongoose");
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import express from "express";
+import bodyParser from "body-parser";
+import ejs from "ejs";
+import _ from "lodash";
 
+//import session from "express-session";
+//import passport from "passport";
+//import connectEnsureLogin from "connect-ensure-login";
+//import passportLocalMongoose from "passport-local-mongoose";
+import {galleryRouter, addGalleryRouter, uploadGalleryRouter, galleryUpload} from './routes/galleries.js';
+import galleriesRouter from "./routes/galleries.js";
+import {uploadNewsRouter, singlePostRouter, addNewsPageRouter, upload} from './routes/news.js';
+import allNewsRouter from "./routes/news.js";
+//import upload from "./models/imagesModel.js";
+//import galleryUpload from "./models/imagesModel.js"
+import loginRouter from "./routes/authentication.js";
+import registerRouter from "./routes/authentication.js";
+import registerAuthRouter from "./routes/authentication.js";
+import loginAuthRouter from "./routes/authentication.js";
+import logoutRouter from "./routes/authentication.js";
+import examOfficeRouter from "./routes/examOffice.js";
+import programmesRouter from "./routes/programmes.js";
+import researchRouter from "./routes/research.js";
+import staffRouter from "./routes/staff.js";
+import studentsRouter from "./routes/students.js";
+import departmentRouter from "./routes/departments.js";
+import pharmChemRouter from "./routes/pharmchem.js";
+import pharmacologyRouter from "./routes/pharmacology.js";
+import pharmaceuticsRouter from "./routes/pharmaceutics.js";
+import pharmacognosyRouter from "./routes/pharmacognosy.js";
+import pharm_practiceRouter from "./routes/pharmpractice.js";
 
-
-const aboutContent = "An atom is the smallest particle of an element that can take part in a chemical reaction";
-const contactContent = "Science is the method of obtaining knowledge through observation and experimentation";
-
- 
-
+dotenv.config();
 const app = express();
+
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(express.static("images"))
+app.use(express.static("galleries"))
 app.use(express.json());
 
-app.use(session({
-  secret: "Our little secret.",
+//This uses a session to store user info when logged in, the session expires when the user logs out
+/*app.use(session({
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/blogDB");
-
-const postSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  image:
-    {
-        type: String,
-        default: ""
-    } 
-});
-
-const Post = mongoose.model("Post", postSchema);
-
-const securitySchema = new mongoose.Schema({
-  username: String,
-  password: String 
-});
-
-securitySchema.plugin(passportLocalMongoose);
-
-const Security = mongoose.model("Security", securitySchema);
-
-passport.use(Security.createStrategy());
-
-passport.serializeUser(Security.serializeUser());
-
-passport.deserializeUser(Security.deserializeUser());
+}));*/
 
 
+       //The below commented line of code uses passport for user authentication
+/*       
+        app.use(passport.initialize());
+        app.use(passport.session());
+        securitySchema.plugin(passportLocalMongoose);
+        passport.use(Security.createStrategy());
+        passport.serializeUser(Security.serializeUser());
+        passport.deserializeUser(Security.deserializeUser());
+*/
+
+mongoose.connect(process.env.MONGO_URL);  //This connects you to atlas
+
+//The below lines of code are the APIs Routes
+
+app.get("/pharm_chem", pharmChemRouter);
+
+app.get("/pharmacology", pharmacologyRouter);
+
+app.get("/pharmaceutics", pharmaceuticsRouter);
+
+app.get("/pharmacognosy", pharmacognosyRouter);
+
+app.get("/pharm_practice", pharm_practiceRouter);
   
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now() + '_' + file.originalname);
-    }
-});
-  
-const upload = multer({ storage: storage }).single('image');
+app.get("/departments",  departmentRouter);
 
-app.get("/login", (req, res) => {
-  res.render("login");
-});
+app.get("/students", studentsRouter);
 
+app.get("/staff", staffRouter);
 
-app.get("/register",  (req, res) =>{
-  res.render("register");
-});
+app.get("/research", researchRouter);
 
-app.get("/departments",  (req, res) =>{
-  res.render("departments");
-});
+app.get("/programmes", programmesRouter);
 
-app.get("/students",  (req, res) =>{
-  res.render("students");
-});
+app.get("/exam_office", examOfficeRouter);
 
-app.get("/staff",  (req, res) =>{
-  res.render("staff");
-});
+app.get("/index", allNewsRouter);
 
-app.get("/research",  (req, res) =>{
-  res.render("research");
-});
+app.get("/posts/:postId", singlePostRouter);
 
-app.get("/programmes",  (req, res) =>{
-  res.render("programmes");
-});
+app.get("/add_news", addNewsPageRouter);
 
-app.get("/exam_office",  (req, res) =>{
-  res.render("exam_office");
-});
+app.post("/add_news", upload, uploadNewsRouter);
 
+app.get("/galleries", galleriesRouter );
 
-app.get("/index", (req, res) => {
-   Post.find({}, (err, posts) => {
-   	
-   			res.render("index", {postContent: posts});
-   });   
-   
-});
-app.get("/about", (req, res) => {
-   res.render("about", {aboutContents: aboutContent});
-});
-app.get("/contact", (req, res) => {
-   res.render("contact", {contactContents: contactContent});
-});
-app.get("/add_news_blog", (req, res) => {
-   res.render("add_news_blog");
-});
-app.post("/add_news_blog", upload, (req, res) => {
-     
-  const post = new Post (
-     
-    {
-    title: req.body.postTitle,
-    content: req.body.postBody,
-    image: req.file.filename
-    });
-    
-  post.save((err) => {
-  	if (!err) {
-  		res.redirect("/index");
-  	}
-  });
+app.get("/gallery/:galleryId", galleryRouter);
 
-});
+app.get("/add_gallery", addGalleryRouter);
 
-app.get("/posts/:postId", (req, res, next) =>{
+app.post("/add_gallery", galleryUpload, uploadGalleryRouter);
 
-const requestedPostId = req.params.postId;
+app.get("/login", loginRouter);
 
-  Post.findOne({_id: requestedPostId}, (err, post) =>{
-    if (err) return next(err);
-    res.render("news", {
-      title: post.title,
-      content: post.content,
-      image: post.image
-    });
-  });
+app.post("/login", loginAuthRouter);
 
-});
+app.get("/register",  registerRouter);
 
-app.post("/register",  (req, res) =>{
+app.post("/register",  registerAuthRouter);
 
-  Security.register({username: req.body.username}, req.body.password,  (err, user) =>{
-    if (err) {
-      console.log(err);
-      res.redirect("/register");
-    } else{
-      passport.authenticate("local")(req, res, () =>{
-        res.redirect("/add_news_blog");
-      });
-    }
+app.get("/logout", logoutRouter);
 
-   });
-
-});
-
-app.post("/login",  (req, res) =>{
-
-  const user = new Security({
-    username: req.body.username,
-    password: req.body.password
-  });
-
-  req.login(user,  (err) =>{
-    if (err) {
-      console.log(err);
-    } else {
-      passport.authenticate("local")(req, res,  () =>{
-        res.redirect("/add_news_blog");
-      });
-    }
-  });
-
-});
-
-
-
-app.get("/logout",  (req, res) =>{
-  req.logout((err) => {
-    if(!err){
-      res.redirect("/login");
-    }
-  });
-  
-});
+//The below lines of code connects you to either the cloud or local host 
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 3000;
+  port = process.env.LOCAL_PORT;
 }
 
-app.listen(port, () => console.log("Server is running on port 3000"));
+app.listen(port, () => console.log("Server is running on port 3000 and database is connected successfully"));

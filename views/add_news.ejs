@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NEWS</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
+    <!-- datetimepicker jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <div class="container-fluid">
+          <form
+            action="/add_news"
+            method="post"
+            type="form"
+            name="form"
+            enctype="multipart/form-data">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="card">
+                  <div class="card-header card-header-primary">
+                    <h5 class="title">NEWS</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Add Title(if any)</label>
+                          <input
+                            type="text"
+                            id="title_name"
+                            name="postTitle"
+                            class="form-control" />
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="">
+                          <label for="">Add Image(if any)</label>
+                          <input
+                            type="file"
+                            name="image"
+                            class="btn btn-fill btn-success"
+                            id="picture" />
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Start Writing(if any)</label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            style="resize: none"
+                            id="content"
+                            name="postBody"
+                            class="form-control"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Announcement first sentence(if any)</label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            style="resize: none"
+                            id="announcement1"
+                            name="announcement1"
+                            class="form-control"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Announcement(if any)</label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            style="resize: none"
+                            id="announcement"
+                            name="announcement"
+                            class="form-control"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Paste source link(if any)</label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            style="resize: none"
+                            id="link_source"
+                            name="link_source"
+                            class="form-control"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Name Of Writer</label>
+                          <input
+                            type="text"
+                            id="writers_name"
+                            name="writers_name"
+                            class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Date Posted</label>
+                          <input
+                            type="text"
+                            id="date_post"
+                            name="date_post"
+                            class="form-control datetimepicker" />
+                        </div>
+                      </div>
+
+                      <div class="col-md-5">
+                        <div class="card">
+                          <div class="card-footer">
+                            <button
+                              type="submit"
+                              id="btn_save"
+                              name="btn_save"
+                              required
+                              class="btn btn-fill btn-primary">
+                              Upload News
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(".datetimepicker").each(function () {
+        $(this).datetimepicker();
+      });
+    </script>
+  </body>
+</html>
