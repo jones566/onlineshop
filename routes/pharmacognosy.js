@@ -1,5 +1,5 @@
 const pharmacognosyRouter = (req, res) => {
-    res.render("pharmacognosy");
+    res.render("admin/sidenav");
   };
   
   export default pharmacognosyRouter;

@@ -1,5 +1,5 @@
 const examOfficeRouter = (req, res) => {
-  res.render("exam_office");
+  res.render("admin/manageuser");
 };
 
 export default examOfficeRouter;

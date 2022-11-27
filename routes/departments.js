@@ -1,5 +1,5 @@
 const departmentRouter = (req, res) => {
-  res.render("departments");
+  res.render("admin/footer");
 };
 
 export default departmentRouter;

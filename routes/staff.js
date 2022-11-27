@@ -1,5 +1,5 @@
 const staffRouter = (req, res) => {
-  res.render("staff");
+  res.render("admin/productlist");
 };
 
 export default staffRouter;

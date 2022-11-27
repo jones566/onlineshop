@@ -1,0 +1,48 @@
+<%- include("sidenav"); -%>
+<%- include("topheader"); -%>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+         <div class="col-md-14">
+            <div class="card ">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Manage User</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive ps">
+                  <table class="table tablesorter table-hover" id="">
+                    <thead class=" text-primary">
+                      <tr><th>User Name</th>
+                <th>User Password</th>
+	<th><a href="adduser" class="btn btn-success">Add New</a></th>
+                    </tr></thead>
+                    <tbody>
+                      <%postContent.forEach((post, index) => {%>
+                      <tr><td><%=post.username%></td><td><%=post.password%></td>
+
+                        <td>
+                        <a href='edituser' type='button' rel='tooltip' title='' class='btn btn-info btn-link btn-sm' data-original-title='Edit User'>
+                                <i class='material-icons'>edit</i>
+                              <div class='ripple-container'></div></a>
+                       
+                          <form action="/deleteUser" method="post">
+                            <button type='submit' class='btn btn-danger btn-link btn-sm' name="remove" value="<%=post._id%>">
+                              <i class='material-icons'>close</i>
+                              <div class='ripple-container'></div>
+                            </button>
+                            </form>
+                                  
+                        <!--<a href='manageuser.php?user_id=$user_id&action=delete' type='button' rel='tooltip' title='' class='btn btn-danger btn-link btn-sm' data-original-title='Delete User'>      
+                        </a>-->
+                        </td></tr>
+                        <%});%>
+                    </tbody>
+                  </table>
+                <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <%- include("footer"); -%>

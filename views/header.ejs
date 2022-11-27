@@ -1,165 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>PSA_UDS</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="js/about.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title> JoneStore</title>
+
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css"/>
+
+		<!-- Slick -->
+		<link type="text/css" rel="stylesheet" href="./css/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="./css/slick-theme.css"/>
+
+		<!-- nouislider -->
+		<link type="text/css" rel="stylesheet" href="./css/nouislider.min.css"/>
+
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="./css/font-awesome.min.css">
+        
+		
+		 
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="./css/style.css"/>
+		<link type="text/css" rel="stylesheet" href="./css/accountbtn.css"/>
+        
+		<script>
+			function disableButton() {
+                 
+				document.getElementById("order").style.disabled = true;
+			}
+		</script>
+		
+		
+		
+        
+		
+         
+		
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
     <style>
-      /* Remove the navbar's default margin-bottom and rounded borders */
-      .navbar {
-        margin-bottom: 0;
-        border-radius: 0;
-      }
+        #navigation {
+			background: #FF4E50;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #F9D423, #FF4E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-      /* Add a gray background color and some padding to the footer */
-
-      .carousel-inner img {
-        width: 100%; /* Set width to 100% */
-        margin: auto;
-        min-height: 200px;
-      }
-
-      /* Hide the carousel text when the screen is less than 600 pixels wide */
-      @media (max-width: 600px) {
-        .carousel-caption {
-          display: none;
+          
         }
-      }
-      #apply {
-        margin-top: 5px;
-        text-decoration: none;
-        border-style: none;
-        border-radius: 5px;
-      }
-      .apply:hover {
-        color: rgba(75, 0, 0, 25);
-        text-decoration: none;
-      }
-      #UDS_logo {
-        height: 50px;
-        width: 50px;
-        margin-top: 40px;
-      }
-      #search_bar {
-        margin-top: 100px;
-        text-align: right;
-      }
-      #search_button {
-        border-style: none;
-        border-radius: 5px;
-        color: white;
-      }
-      #search_box {
-        border-style: none;
-        border-radius: 5px;
-      }
-      .readmore {
-        background-color: black;
-        color: white;
-        border-style: none;
-        border-radius: 3px;
-      }
-      .news {
-        text-align: center;
-      }
-      body {
-        height: 100vh;
-      }
-      .arrange {
-        display: inline;
-        float: right;
-      }
-      .products {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      body {
-        overflow-x: hidden;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle"
-            data-toggle="collapse"
-            data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"> </a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="index">Home</a></li>
-            <li><a href="about">About Us</a></li>
-            <li><a href="departments">Department</a></li>
-            <li><a href="programmes">Programmes</a></li>
-            <li><a href="galleries">Gallery</a></li>
-            <li><a href="students">Students</a></li>
-            <li><a href="exam_office">Exam Office</a></li>
-            <li><a href="research">Research & Collaboration</a></li>
-            <li>
-              <a
-                target="_self"
-                href="https://www.uds.edu.gh/schools-and-faculties/spps"
-                >Staff</a
-              >
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li id="apply">
-              <button type="submit" id="apply" style="background-color: green">
-                <a
-                  href="https://www.uds.edu.gh/admissions/how-to-apply/"
-                  class="apply"
-                  style="color: black"
-                  >Apply for a programme</a
-                >
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+        #header {
+            
+			background-color: rgb(255,255,255);
+            
 
-    <div style="background-color: yellow">
-      <div class="container text-center" style="text-align: left">
-        <div class="row">
-          <div class="col-sm-4">
-            <a href="index"><img src="./images/uds.png" id="UDS_logo" /></a>
-          </div>
-          <div class="col-sm-4">
-            <h3>FACULTY OF PHARMACY<br />& PHARMACEUTICAL SCIENCES</h3>
-            <h5>UNIVERSITY FOR DEVELOPMENT STUDIES</h5>
-          </div>
-          <div class="col-sm-4" id="search_bar">
-            <input
-              type="search"
-              name="search"
-              placeholder="Type here"
-              id="search_box" />
-            <button
-              type="submit"
-              style="background-color: black"
-              id="search_button">
-              search
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br />
-  </body>
-</html>
+  
+        }
+        #top-header {
+              
+             background-color: rgb(0,0,0)
+            
+
+
+        }
+        #footer {
+            
+          
+        }
+        #bottom-footer {
+            background: #7474BF;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #348AC7, #7474BF);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #348AC7, #7474BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          
+
+        }
+        .footer-links li a {
+          color: #1E1F29;
+        }
+        .mainn-raised {
+            
+            margin: -7px 0px 0px;
+            border-radius: 6px;
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+
+        }
+       
+        .glyphicon{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+    .glyphicon-chevron-left:before{
+        content:"\f053"
+    }
+    .glyphicon-chevron-right:before{
+        content:"\f054"
+    }
+        
+
+    .orderBorder{
+		border-top-style: hidden;
+		border-left-style: hidden;
+		border-right-style: hidden;
+		border-bottom-style: hidden;
+		outline: none;
+		cursor: default;
+	}
+	#UDS_logo{
+    height: 50px;
+    width: 50px;
+    margin-top: 40px;
+   }   
+        
+        </style>
+
+    </head>
+	<body>
+		<!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+				<div class="container">
+					
+					<ul class="header-links pull-right">
+						<li>
+                            
+                                <div class="dropdownn">
+                                  <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i>
+									<% if (isAuthenticated) { %>
+										Hello, <%= user.username %>!
+									  <% } else { %>
+									         My Account
+										  <% } %>		 
+									</a>
+                                  <div class="dropdownn-content">
+                                    <a href="login" data-toggle="modal" data-target="#Modal_login"><i class="fa fa-sign-in" aria-hidden="true" ></i>Login</a>
+                                    <a href="register" data-toggle="modal" data-target="#Modal_register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
+									<a href="/logout"  ><i class="fa fa-sign-in" aria-hidden="true"></i>Log out</a>
+                                  </div>
+                                </div>   
+                        </li>				
+					</ul>
+					
+				</div>
+			</div>
+			<!-- /TOP HEADER -->
+			
+			
+
+			<!-- MAIN HEADER -->
+			<div id="header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+								<font style="font-style:normal; font-size: 33px;color: aliceblue;font-family: serif;">
+									<a href="index"><img src="./images/logo.jpg" id="UDS_logo" style="border-radius:25px;"></a>
+                                    </font>
+									
+								</a>
+							</div>
+						</div>
+						<!-- /LOGO -->
+
+						<!-- SEARCH BAR -->
+						<div class="col-md-6" style="margin-top: 50px;">
+							<!--<div class="header-search">
+								<form>
+									<select class="input-select">
+										<option value="All Categories"><a href="index">All Categories</a></option>
+										<option value="Houses"><a href="houses">Houses</a></option>
+										<a href="apartments"><option value="Apartments">Apartments</option></a>
+									</select>
+									<input class="input" id="search" type="text" placeholder="Search here">
+									<button type="submit" id="search_btn" class="search-btn">Search</button>
+								</form>
+							</div>-->
+                            
+							<nav class="navbar navbar-inverse">
+								<div class="container-fluid">
+									
+								  <div class="navbar-header">
+									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+									  <span class="icon-bar"></span>
+									  <span class="icon-bar"></span>
+									  <span class="icon-bar"></span>                        
+									</button>
+									<a class="navbar-brand" href="#">
+										
+									</a>
+								  </div>
+								  <div class="collapse navbar-collapse" id="myNavbar">
+									<ul class="nav navbar-nav">
+									  <li class="active"><a href="index">Home</a></li>
+									  <li><a href="houses">Houses</a></li>
+									  <li><a href="apartments">Apartments</a></li>  
+									</ul>
+									
+								  </div>
+								</div>
+							  </nav>	
+
+
+						</div>
+						<!-- /SEARCH BAR -->
+
+                       
+
+						<!-- ACCOUNT -->
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								
+
+								<!-- Cart -->
+								<div class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+									
+									</a>
+									<div class="cart-dropdown"  >
+										<div class="cart-list" id="cart_product">
+										
+											
+										</div>
+										
+										<div class="cart-btns">
+												<a href="cart.php" style="width:100%;"><i class="fa fa-edit"></i>  edit cart</a>
+											
+										</div>
+									</div>
+										
+									</div>
+								<!-- /Cart -->
+
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars">
+											
+										</i>
+										<span>
+											
+										</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+		<nav id='navigation'>
+			<!-- container -->
+            <div class="container" id="get_category_home">
+                
+            </div>
+				<!-- responsive-nav -->
+				
+			<!-- /container -->
+		</nav>
+            
+
+		<!-- NAVIGATION -->
+		
+		<div class="modal fade" id="Modal_login" role="dialog">
+                        <div class="modal-dialog">
+													
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              
+                            </div>
+                            <div class="modal-body">
+          
+                            </div>
+                            
+                          </div>
+													
+                        </div>
+                      </div>
+                <div class="modal fade" id="Modal_register" role="dialog">
+                        <div class="modal-dialog" style="">
+
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              
+                            </div>
+                            <div class="modal-body">
+                
+                            </div>
+                            
+                          </div>
+
+                        </div>
+                      </div>
+		

@@ -1,0 +1,413 @@
+<%- include("header"); -%>
+
+<div class="main main-raised">
+    
+  
+    <!-- SECTION -->
+    <div class="section mainn mainn-raised"></div>
+    <!-- /SECTION -->
+  
+    <!-- SECTION -->
+    <div class="section">
+      <!-- container -->
+      <div class="container">
+        <!-- row -->
+        <div class="row">
+          <!-- section title -->
+          <div class="col-md-12">
+            <div class="section-title">
+              <h3 class="title">HOUSES</h3>
+            </div>
+          </div>
+          <!-- /section title -->
+  
+          <!-- Products tab & slick -->
+          <div class="col-md-12 mainn mainn-raised">
+            <div class="row">
+              <div class="products-tabs">
+                <!-- tab -->
+                <div id="tab1" class="tab-pane active">
+                  <div class="products-slick" data-nav="#slick-nav-1">
+                    <%postContent.forEach((post, index) => {%>
+                        <% if(post.content === "House") {%>
+                    <div class="product">
+                      <form action="/houses" method="post">
+                        <a href="posts/<%=post._id%>"
+                          target="_self"><div class="product-img">
+                            <img
+                              src="<%=post.image%>"
+                              style="height: 170px"
+                              alt="" />
+                            <div class="product-label">
+                              <span class="new">AVAILABLE</span>
+                            </div>
+                          </div></a
+                        >
+                        <div class="product-body">
+                          <p class="product-category"><%=post.content%></p>
+                          <h3 class="product-name header-cart-item-name">
+                            <input
+                              style="text-align: center; width: 100px;"
+                              class="orderBorder"
+                              type="text"
+                              name="catBody"
+                              value="<%=post.title%>"
+                              readonly /><!--<a href="posts/<%=post._id%>"></a>-->
+                              <input
+                            style="text-align: center; width: 160px;"
+                            class="orderBorder"
+                            type="text"
+                            name="name"
+                            value="<%=post.productname%>"
+                            readonly hidden/>
+                          </h3>
+                          <h4 class="product-price header-cart-item-info">
+                            <input
+                              style="text-align: center; width: 160px;"
+                              class="orderBorder"
+                              type="text"
+                              name="priceBody"
+                              value="GHS <%=post.announcement%>.00"
+                              readonly /><!--<%=post.announcement%>.00<del
+                            class="product-old-price"></del>-->
+                          </h4>
+                          <% if (isAuthenticated) { %>
+                          <input
+                            type="text"
+                            name="userBody"
+                            value="<%=user.username%>"
+                            readonly
+                            hidden />
+                          <% } else { %>
+                          <p>Register or login to make an order</p>
+                          <% } %>
+                          <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                          </div>
+                        </div>
+                        <div class="add-to-cart">
+                          <% if (isAuthenticated) { %>
+                            <% if (post.title === "For Sale") { %>
+                              <input
+                              type="submit"
+                              name="order"
+                              id="order"
+                              value="Buy"
+                              onclick="alert('PURCHASE SUCCESSFUL!, WE WILL GET IN TOUCH SHORTLY')"
+                              class="add-to-cart-btn block2-btn-towishlist" />
+  
+                            <%} else { %>
+                              <input
+                              type="submit"
+                              name="order"
+                              id="order"
+                              value="Rent"
+                              onclick="alert('RENT SUCCESSFUL!, WE WILL GET IN TOUCH SHORTLY')"
+                              class="add-to-cart-btn block2-btn-towishlist" />
+                            <% } %>
+  
+                          <% } else { %>
+                            <% if (post.title === "For Sale") { %>
+                              <input
+                              type="submit"
+                              name="order"
+                              id="order"
+                              value="Buy"
+                              onclick="alert('PURCHASE SUCCESSFUL!, WE WILL GET IN TOUCH SHORTLY')"
+                              class="add-to-cart-btn block2-btn-towishlist" disabled/>
+  
+                            <%} else { %>
+                              <input
+                              type="submit"
+                              name="order"
+                              id="order"
+                              value="Rent"
+                              onclick="alert('RENT SUCCESSFUL!, WE WILL GET IN TOUCH SHORTLY')"
+                              class="add-to-cart-btn block2-btn-towishlist" disabled/>
+                            <% } %>
+                          <% } %>
+                          <!--<a
+                          href="admin/orders/<%=post.announcement1%>"
+                          class="add-to-cart-btn block2-btn-towishlist"
+                          >Details</a
+                        >-->
+                        </div>
+                      </form>
+                    </div>
+                    <% } %>
+                    <%});%>
+  
+                    <!-- product -->
+  
+                    <!-- /product -->
+  
+                    <!-- /product -->
+                  </div>
+                  <div id="slick-nav-1" class="products-slick-nav"></div>
+                </div>
+                <!-- /tab -->
+              </div>
+            </div>
+          </div>
+          <!-- Products tab & slick -->
+        </div><br><br><br>
+        <!-- /row -->
+  
+        <!-- row -->
+        
+        <div class="row">
+          <!-- section title -->
+          <div class="col-md-12">
+            <div class="section-title">
+              <h3 class="title">SELLING</h3>
+            </div>
+          </div>
+          <!-- /section title -->
+          
+          <!-- Products tab & slick -->
+          <div class="col-md-12 mainn mainn-raised">
+            <div class="row">
+              <div class="products-tabs">
+                <!-- tab -->
+                <div id="tab1" class="tab-pane active">
+                  <div class="products-slick" data-nav="#slick-nav-1">
+                    <%postContent.forEach((post, index) => {%>
+                    <% if (post.content === "House" && post.title === "For Sale") {%>
+                    <div class="product">
+                      <form action="/houses" method="post">
+                        <a href="posts/<%=post._id%>"
+                            target="_self"><div class="product-img">
+                            <img
+                              src="<%=post.image%>"
+                              style="height: 170px"
+                              alt="" />
+                            <div class="product-label">
+                              <span class="new">AVAILABLE</span>
+                            </div>
+                          </div></a
+                        >
+                        <div class="product-body">
+                          <p class="product-category"><%=post.content%></p>
+                          <h3 class="product-name header-cart-item-name">
+                            <input
+                              style="text-align: center; width: 160px;"
+                              class="orderBorder"
+                              type="text"
+                              name="catBody"
+                              value="<%=post.title%>"
+                              readonly /><!--<a href="posts/<%=post._id%>"></a>-->
+                              <input
+                            style="text-align: center; width: 160px;"
+                            class="orderBorder"
+                            type="text"
+                            name="name"
+                            value="<%=post.productname%>"
+                            readonly hidden/>
+                          </h3>
+                          <h4 class="product-price header-cart-item-info">
+                            <input
+                              style="text-align: center; width: 160px;"
+                              class="orderBorder"
+                              type="text"
+                              name="priceBody"
+                              value="GHS <%=post.announcement%>.00"
+                              readonly /><!--<%=post.announcement%>.00<del
+                            class="product-old-price"></del>-->
+                          </h4>
+                          <% if (isAuthenticated) { %>
+                          <input
+                            type="text"
+                            name="userBody"
+                            value="<%=user.username%>"
+                            readonly
+                            hidden />
+                          <% } else { %>
+                          <p>Register or login to make an order</p>
+                          <% } %>
+                          <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                          </div>
+                        </div>
+                        <div class="add-to-cart">
+                          <% if (isAuthenticated) { %>
+                          <input
+                            type="submit"
+                            name="order"
+                            id="order"
+                            value="Buy"
+                            onclick="alert('PURCHASE SUCCESSFUL!, WE WILL GET IN TOUCH SHORTLY')"
+                            class="add-to-cart-btn block2-btn-towishlist" />
+                          <% } else { %>
+                          <input
+                            type="submit"
+                            name="order"
+                            value="Buy"
+                            class="add-to-cart-btn block2-btn-towishlist"
+                            disabled />
+                          <% } %>
+                          <!--<a
+                          href="admin/orders/<%=post.announcement1%>"
+                          class="add-to-cart-btn block2-btn-towishlist"
+                          >Details</a
+                        >-->
+                        </div>
+                      </form>
+                    </div>
+                    <%}%>
+                    <%});%>
+  
+                    <!-- product -->
+  
+                    <!-- /product -->
+  
+                    <!-- /product -->
+                  </div>
+                  <div id="slick-nav-1" class="products-slick-nav"></div>
+                </div>
+                <!-- /tab -->
+              </div>
+            </div>
+          </div>
+          <!-- Products tab & slick -->
+        </div><br><br><br>
+        <!-- /row -->
+        
+        <!-- row -->
+        <div class="row">
+          <!-- section title -->
+          <div class="col-md-12">
+            <div class="section-title">
+              <h3 class="title">RENTING</h3>
+            </div>
+          </div>
+          <!-- /section title -->
+  
+          <!-- Products tab & slick -->
+          <div class="col-md-12 mainn mainn-raised">
+            <div class="row">
+              <div class="products-tabs">
+                <!-- tab -->
+                <div id="tab1" class="tab-pane active">
+                  <div class="products-slick" data-nav="#slick-nav-1">
+                    <%postContent.forEach((post, index) => {%>
+                    <% if(post.content === "House" && post.title === "For Rent") {%>
+                    <div class="product">
+                      <form action="/houses" method="post">
+                        <a href="posts/<%=post._id%>"
+                            target="_self"><div class="product-img">
+                            <img
+                              src="<%=post.image%>"
+                              style="height: 170px"
+                              alt="" />
+                            <div class="product-label">
+                              <span class="new">AVAILABLE</span>
+                            </div>
+                          </div></a
+                        >
+                        <div class="product-body">
+                          <p class="product-category"><%=post.content%></p>
+                          <h3 class="product-name header-cart-item-name">
+                            <input
+                              style="text-align: center; width: 160px;"
+                              class="orderBorder"
+                              type="text"
+                              name="catBody"
+                              value="<%=post.title%>"
+                              readonly /><!--<a href="posts/<%=post._id%>"></a>-->
+                              <input
+                            style="text-align: center; width: 160px;"
+                            class="orderBorder"
+                            type="text"
+                            name="name"
+                            value="<%=post.productname%>"
+                            readonly hidden/>
+                          </h3>
+                          <h4 class="product-price header-cart-item-info">
+                            <input
+                              style="text-align: center; width: 160px;"
+                              class="orderBorder"
+                              type="text"
+                              name="priceBody"
+                              value="GHS <%=post.announcement%>.00"
+                              readonly /><!--<%=post.announcement%>.00<del
+                            class="product-old-price"></del>-->
+                          </h4>
+                          <% if (isAuthenticated) { %>
+                          <input
+                            type="text"
+                            name="userBody"
+                            value="<%=user.username%>"
+                            readonly
+                            hidden />
+                          <% } else { %>
+                          <p>Register or login to make an order</p>
+                          <% } %>
+                          <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                          </div>
+                        </div>
+                        <div class="add-to-cart">
+                          <% if (isAuthenticated) { %>
+                          <input
+                            type="submit"
+                            name="order"
+                            id="order"
+                            value="Rent"
+                            onclick="alert('RENT SUCCESSFUL!, WE WILL GET IN TOUCH SHORTLY')"
+                            class="add-to-cart-btn block2-btn-towishlist" />
+                          <% } else { %>
+                          <input
+                            type="submit"
+                            name="order"
+                            value="Rent"
+                            class="add-to-cart-btn block2-btn-towishlist"
+                            disabled />
+                          <% } %>
+                          <!--<a
+                          href="admin/orders/<%=post.announcement1%>"
+                          class="add-to-cart-btn block2-btn-towishlist"
+                          >Details</a
+                        >-->
+                        </div>
+                      </form>
+                    </div>
+                    <%}%>
+                    <%});%>
+  
+                    <!-- product -->
+  
+                    <!-- /product -->
+  
+                    <!-- /product -->
+                  </div>
+                  <div id="slick-nav-1" class="products-slick-nav"></div>
+                </div>
+                <!-- /tab -->
+              </div>
+            </div>
+          </div>
+          <!-- Products tab & slick -->
+        </div>
+        <!-- /row -->
+        
+      </div>
+      <!-- /container -->
+    </div>
+    <!-- /SECTION -->
+  </div>
+  
+
+<%- include("newslettter"); -%>
+<%- include("footer"); -%>

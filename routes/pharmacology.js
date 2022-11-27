@@ -1,5 +1,5 @@
 const pharmacologyRouter = (req, res) => {
-    res.render("pharmacology");
+    res.render("admin/sumit_form");
   };
   
   export default pharmacologyRouter;

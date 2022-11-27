@@ -1,5 +1,4 @@
 const researchRouter = (req, res) => {
-  res.render("research");
+  res.render("admin/orders");
 };
-
 export default researchRouter;

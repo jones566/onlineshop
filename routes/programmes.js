@@ -1,5 +1,5 @@
 const programmesRouter = (req, res) => {
-  res.render("programmes");
+  res.render("admin/adduser");
 };
 
 export default programmesRouter;

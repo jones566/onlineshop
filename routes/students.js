@@ -1,5 +1,5 @@
 const studentsRouter = (req, res) => {
-  res.render("students");
+  res.render("admin/addproduct");
 };
 
 export default studentsRouter;

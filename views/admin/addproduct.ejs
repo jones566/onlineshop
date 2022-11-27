@@ -1,0 +1,169 @@
+<%- include("sidenav"); -%> <%- include("topheader"); -%>
+
+<!-- End Navbar -->
+<div class="content">
+  <div class="container-fluid">
+    <form
+      action=""
+      method="POST"
+      type="form"
+      name="form"
+      enctype="multipart/form-data">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h5 class="title">Add Product</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Product Title</label>
+                    <select name="postTitle" id="content" class="form-control">
+                      <option id="Rent">For Rent</option>
+                      <option id="Sale">For Sale</option>
+                    </select>
+                    <!--<input
+                      type="text"
+                      id="product_name"
+                      required
+                      name="postTitle"
+                      class="form-control" />-->
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="">
+                    <label for="">Add Image</label>
+                    <input
+                      type="file"
+                      name="image"
+                      
+                      class="btn btn-fill btn-success"
+                      id="picture" >
+                    <input
+                      type="file"
+                      name="image2"
+                  
+                      class="btn btn-fill btn-success"
+                      id="picture" >
+                   <input
+                      type="file"
+                      name="image3"
+                      
+                      class="btn btn-fill btn-success"
+                      id="picture" />
+                    <input
+                      type="file"
+                      name="image4"
+                      
+                      class="btn btn-fill btn-success"
+                      id="picture" />
+                    <input
+                      type="file"
+                      name="image5"
+                      
+                      class="btn btn-fill btn-success"
+                      id="picture" />
+                    <input
+                      type="file"
+                      name="image6"
+                      
+                      class="btn btn-fill btn-success"
+                      id="picture" />
+                      <input
+                      type="file"
+                      name="image7"
+                      
+                      class="btn btn-fill btn-success"
+                      id="picture" />
+                    <input
+                      type="file"
+                      name="image8"
+                      
+                      class="btn btn-fill btn-success"
+                      id="picture" />
+                    <input
+                      type="file"
+                      name="image9"
+                      
+                      class="btn btn-fill btn-success"
+                      id="picture" />
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Description</label>
+                    <textarea
+                      rows="4"
+                      cols="80"
+                      id="details"
+                      required
+                      name="announcement1"
+                      class="form-control"></textarea>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Pricing</label>
+                    <input
+                      type="text"
+                      id="price"
+                      name="announcement"
+                      required
+                      class="form-control" />
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Product Name</label>
+                    <input
+                      type="text"
+                      id="price"
+                      name="name"
+                      required
+                      class="form-control" />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h5 class="title">Categories</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Product Category</label>
+                    <select name="postBody" id="content" class="form-control">
+                      <option id="Apartment">Apartment</option>
+                      <option id="House">House</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button
+                type="submit"
+                id="btn_save"
+                name="btn_save"
+                required
+                class="btn btn-fill btn-primary">
+                Update Product
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<%- include("footer"); -%>
