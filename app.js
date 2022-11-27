@@ -232,8 +232,8 @@ app.post("/login", (req, res, next) => {
   });
   
   user.save((err) => {
-    if (!err) {
-      res.redirect("/login");
+    if (err) {
+      res.send(JSON.stringify(err.message)); 
     }
   });
   
