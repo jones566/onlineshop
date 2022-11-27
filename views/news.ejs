@@ -203,12 +203,7 @@
 								<!-- /Cart -->
 
 								<!-- Menu Toogle -->
-								<div class="menu-toggle">
-									<a href="#">
-										<i class="fa fa-bars"></i>
-										<span>Menu</span>
-									</a>
-								</div>
+								
 								<!-- /Menu Toogle -->
 							</div>
 						</div>
@@ -375,9 +370,13 @@
 							</ul>
 						   <div>
 							<div class="add-to-cart">
-								<div class="btn-group" style="margin-left: 25px; margin-top: 15px;">
-									<a href="javascript:history.go(-2)" class="add-to-cart-btn">GO BACK</a>
-                                </div>
+								<div class="btn-group" style="margin-left: 25px; margin-top: 15px;"></div>
+								  <script>
+									document.write('<a class="add-to-cart-btn" href="' + document.referrer + '">Go Back</a>');
+								  </script>
+								</div>
+									
+                                
 							</div>
 						   </div>
 						</div>
