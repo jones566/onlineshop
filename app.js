@@ -52,7 +52,7 @@ app.use(express.json());
 
 //This uses a session to store user info when logged in, the session expires when the user logs out
 app.use(session({
-  secret: process.env.SECRET,
+  secret: "ThisisOurLittleSecret",
   resave: false,
   saveUninitialized: false
 }));
@@ -61,7 +61,7 @@ app.use(passport.initialize());
 app.use(passport.session());
        //The below commented line of code uses passport for user authentication
        
-mongoose.connect("mongodb://127.0.0.1:27017/realestateDB");  //This connects you to the database locally
+mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/realestateDB");  //This connects you to the database locally
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -291,7 +291,7 @@ app.get("/test", (req, res) => {
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 3000;
+  port = 8000;
 }
 
-app.listen(port, () => console.log("Server is running on port 3000 and database is connected successfully"));
+app.listen(port, () => console.log("Server is running on port 8000 and database is connected successfully"));
