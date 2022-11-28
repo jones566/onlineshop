@@ -1,43 +1,52 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import express from "express";
-import bodyParser from "body-parser";
-import session from "express-session";
-import passport from "passport";
-import LocalStrategy from "passport-local";
-import passportLocalMongoose from "passport-local-mongoose";
-import ejs from "ejs";
-import _ from "lodash";
+/*  ---------Project Info--------
+            INTRODUCTION
+  This is a real estate app where a user or a customer can buy or rent a property which includes houses and apartments.
+  
+            BODY
+  The app works in such a way that a user can access it and look around through it even though the person might not be
+  a registered member, but before a user can buy or rent a property the person must register or login first. Firstly,
+  when a user visits the site, the buttons will be available for the user either buy or rent depending on the category
+  of the property. The button is rendered non functional though the user has entered the site, it is only made functional
+  once the user has registered or logged in. Also the user can login or register from any page of the app.
+  
+          CONCLUSION
+  This is a single page real estate app which reduces the burden of the user having to navigate through many pages.        
+
+*/
+
+import mongoose from 'mongoose';  //This is a mongodb package for creating the schemas
+import dotenv from 'dotenv';  //This line helps to keep the most important values private in the .env
+import express from "express"; //This is the framework library
+import bodyParser from "body-parser"; //Body parser helps to connect our name field to our backend
+import session from "express-session"; // This is what stores the user session
+import passport from "passport"; // passport is used to authenticate a user 
+import passportLocalMongoose from "passport-local-mongoose"; // It is used in combination with passport to ensure use login
+import _ from "lodash"; //lodash helps us to create a param which we can bind to our products so that we can view the individually
 
 
-import connectEnsureLogin from "connect-ensure-login";
-import {addGalleryRouter, uploadGalleryRouter, galleryUpload} from './routes/galleries.js';
-import galleriesRouter from "./routes/galleries.js";
-import {uploadNewsRouter, singlePostRouter, addNewsPageRouter, upload, 
-       uploadOrderRouter, allOrderRouter, allProductsRouter, deleteProductRouter, deleteOrderRouter, apartmentsRouter, housesRouter, apartmentOrderRouter, houseOrderRouter} 
-       from './routes/news.js';
-import allNewsRouter from "./routes/news.js";
-//import upload from "./models/imagesModel.js";
-//import galleryUpload from "./models/imagesModel.js"
+
+
+// This line imports various routes from the various models
+import {uploadProductRouter, singleProductRouter, addProductsPageRouter, upload, 
+       uploadOrderRouter, allOrderRouter, allProductsRouter, deleteProductRouter, 
+       deleteOrderRouter, apartmentsRouter, housesRouter, apartmentOrderRouter, 
+       houseOrderRouter} 
+       from './routes/product.js';
+
+import homePageRouter from "./routes/product.js";
+
 import loginRouter, { addUserRouter } from "./routes/authentication.js";
 import {registerRouter}  from "./routes/authentication.js";
-import examOfficeRouter from "./routes/examOffice.js";
-import programmesRouter from "./routes/programmes.js";
-import researchRouter from "./routes/research.js";
-import staffRouter from "./routes/staff.js";
-import studentsRouter from "./routes/students.js";
-import departmentRouter from "./routes/departments.js";
-import pharmChemRouter from "./routes/pharmchem.js";
-import pharmacologyRouter from "./routes/pharmacology.js";
-//import pharmaceuticsRouter from "./routes/pharmaceutics.js";
-import pharmacognosyRouter from "./routes/pharmacognosy.js";
-import pharm_practiceRouter from "./routes/pharmpractice.js";
+import footerRouter from "./routes/footer.js";
+
+import sidenavRouter from "./routes/sidenav.js";
+import topheaderRouter from "./routes/topheader.js";
+//  end of imports
 
 
 
 
-
-dotenv.config();
+dotenv.config();        
 const app = express();
 
 
@@ -59,9 +68,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-       //The below commented line of code uses passport for user authentication
        
-mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/realestateDB");  //This connects you to the database locally
+mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/realestateDB");  //This connects you to Mongo db atlas
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -89,25 +97,7 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-
-
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-  User.findById(id,  (err, user) =>{
-    done(err, user);
-  });
-  
-});
-
-
 //The below lines of code are the APIs Routes
-
-app.get("/pharm_chem",connectEnsureLogin.ensureLoggedIn('/register'), pharmChemRouter); //This ensures that a user is registered before allowed to book
-
-app.get("/admin/sumit_form", pharmacologyRouter);
 
 app.get("/admin/indexes",  (req, res) => {
   User.find({}, (err, posts) => {
@@ -118,13 +108,13 @@ app.get("/admin/indexes",  (req, res) => {
   });
 }); //This is the admin dashboard route;
 
-app.get("/admin/sidenav", pharmacognosyRouter);
+app.get("/admin/sidenav", sidenavRouter);
 
-app.get("/admin/topheader", pharm_practiceRouter);
+app.get("/admin/topheader", topheaderRouter);
   
-app.get("/admin/footer",  departmentRouter);
+app.get("/admin/footer",  footerRouter);
 
-//app.get("/admin/addproduct", studentsRouter);
+
 
 app.get("/admin/edituser", (req, res) => {
   User.find({}, (err, posts) => {
@@ -137,8 +127,6 @@ app.get("/admin/edituser", (req, res) => {
 })
 
 app.get("/admin/productlist", allProductsRouter);
-
-//app.get("/admin/productlist", staffRouter);
 
 app.get("/admin/orders", allOrderRouter);
 
@@ -169,7 +157,6 @@ app.post("/admin/adduser",  (req, res) => {
   );
 });
 
-//app.get("/admin/adduser", programmesRouter);
 
 app.get("/admin/manageuser", (req, res) => {
   User.find({}, (err, posts) => {
@@ -190,7 +177,7 @@ app.post("/deleteUser", (req, res) => {
 
 app.post("/deleteProduct", deleteProductRouter)
 
-//app.get("/admin/manageuser", examOfficeRouter);
+
 
 app.get("/apartments", apartmentsRouter);
 
@@ -200,23 +187,15 @@ app.get("/houses", housesRouter);
 
 app.post("/houses", houseOrderRouter);
 
-app.get("/index", allNewsRouter);
+app.get("/index", homePageRouter);
 
 app.post("/index", uploadOrderRouter)
 
-app.get("/posts/:postId", singlePostRouter, galleriesRouter);
+app.get("/posts/:postId", singleProductRouter);
 
-app.get("/admin/addproduct", addNewsPageRouter);
+app.get("/admin/addproduct", addProductsPageRouter);
 
-app.post("/admin/addproduct", upload, uploadNewsRouter);
-
-//app.get("/posts/:postId", galleriesRouter );
-
-//app.get("/gallery/:galleryId", galleryRouter);
-
-app.get("/add_gallery", addGalleryRouter);
-
-app.post("/add_gallery", galleryUpload, uploadGalleryRouter);
+app.post("/admin/addproduct", upload, uploadProductRouter);
 
 app.get("/login", loginRouter);
 
@@ -230,16 +209,8 @@ app.post("/login", (req, res, next) => {
     address1: req.body.address1,
     address2: req.body.address2
   });
-  
-  user.save((err) => {
-    if (err) {
-      res.send(JSON.stringify(err.message)); 
-    }
-  });
-  
-  
   req.login(user,  (err) =>{
-    if (err) { return next} 
+    if (err) { res.send(JSON.stringify(err.message));} 
     else {
       passport.authenticate("local", {successRedirect: 'back', failureRedirect: 'back', failureFlash: 'true'})(req, res,(err) => {
         res.redirect('back');
@@ -279,19 +250,15 @@ app.get("/logout",(req, res) => {
     if(!err){
       res.redirect("/index");
     }
+    
   }); 
-});
-
-//The below line of code is just for testing purpose
-app.get("/test", (req, res) => {
-  res.render("test");
 });
 
 //The below lines of code connects you to either the cloud or local host 
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 8000;
+  port = 3000;
 }
 
 app.listen(port, () => console.log("Server is running on port 8000 and database is connected successfully"));

@@ -56,7 +56,7 @@ const deleteProductRouter = (req, res) => {
         });
 }
 
-const allNewsRouter = (req, res) => {
+const homePageRouter = (req, res) => {
   Post.find({}, (err, posts) => {
     res.render("index", { postContent: posts, 
       isAuthenticated: req.isAuthenticated(),
@@ -95,7 +95,7 @@ const deleteOrderRouter = (req, res) => {
         });
 }
 
-const uploadNewsRouter = (req, res) => {
+const uploadProductRouter = (req, res) => {
   const post = new Post({
     title: req.body.postTitle,
     content: req.body.postBody,
@@ -178,12 +178,12 @@ const houseOrderRouter = (req, res) => {
 };
 
 
-const singlePostRouter = (req, res, next) => {
+const singleProductRouter = (req, res, next) => {
   const requestedPostId = req.params.postId;
 
   Post.findOne({_id:  requestedPostId}, (err, post) => {
     if (err) return next(err);
-    res.render("news", {
+    res.render("product", {
       title: post.title,
       content: post.content,
       announcement1: post.announcement1,
@@ -203,11 +203,12 @@ const singlePostRouter = (req, res, next) => {
   });
 };
 
-const addNewsPageRouter = (req, res) => {
+const addProductsPageRouter = (req, res) => {
   res.render("admin/addproduct");
 };
   
-export default allNewsRouter;
-export { uploadNewsRouter, singlePostRouter, addNewsPageRouter,upload, uploadOrderRouter, 
-  allOrderRouter, allProductsRouter, deleteProductRouter, deleteOrderRouter, apartmentsRouter,
- housesRouter, apartmentOrderRouter, houseOrderRouter};
+export default homePageRouter;
+export { uploadProductRouter, singleProductRouter, addProductsPageRouter,upload, 
+         uploadOrderRouter, allOrderRouter, allProductsRouter, deleteProductRouter,
+         deleteOrderRouter, apartmentsRouter,housesRouter, apartmentOrderRouter, 
+         houseOrderRouter};

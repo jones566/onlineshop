@@ -23,10 +23,11 @@
                     </tr></thead>
                     <tbody>
                       <%postContent.forEach((post, index) => {%>
+      
                           <tr>
                             <td><%=post._id%></td><td><%=post.username%></td><td><%=post.email%></td><td><%=post.password%></td><td><%=post.mobile%></td><td><%=post.address1%></td><td><%=post.address2%></td>
                           </tr>
-                      
+                    
                       <%});%>
                     </tbody>
                   </table>
