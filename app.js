@@ -69,7 +69,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
        
-mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/realestateDB");  //This connects you to Mongo db atlas
+mongoose.connect("mongodb://127.0.0.1:27017/realestateDB");  //This connects you to Mongo db atlas
 
 const userSchema = new mongoose.Schema({
   username: String,
