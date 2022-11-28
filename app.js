@@ -250,7 +250,6 @@ app.get("/logout",(req, res) => {
     if(!err){
       res.redirect("/index");
     }
-    
   }); 
 });
 
@@ -258,7 +257,7 @@ app.get("/logout",(req, res) => {
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 3000;
+  port = 8000;
 }
 
 app.listen(port, () => console.log("Server is running on port 8000 and database is connected successfully"));
