@@ -1,0 +1,95 @@
+<%- include("header"); -%>
+
+<div class="card-body container" style="color: black; background-color: white">
+  <div class="table-responsive ps">
+    <form action="/cartpage" method="post">
+      <table class="table tablesorter col-md-14"  id="">
+        <thead class="text-primary">
+          <tr>
+            <th>Product Image</th>
+            <th>Product Slug</th>
+            <th>Product Price</th>
+          </tr>
+        </thead>
+
+        <tbody style="color: black">
+          <%var total = 0;%> <%postContent.forEach((post) => {%> <% if
+          (isAuthenticated) { %>
+          <input
+            type="text"
+            name="customer"
+            value="<%=user.username%>"
+            readonly
+            hidden />
+          <%}%>
+          <tr>
+            <td>
+              <img
+                src="./<%=post.productimage%>"
+                style="width: 50px; height: 50px; border: groove #000" />
+            </td>
+            <td>
+              <input
+                name="slug"
+                value="<%=post.ordertitle%>"
+                class="orderBorder"
+                readonly />
+            </td>
+            <td>
+              GHS
+              <input
+                name="price"
+                value="<%=post.orderprice%>"
+                class="orderBorder"
+                readonly />
+            </td>
+            <td>
+              
+              <form action="/deleteCart" method="post">
+                <button type='submit' class='btn-danger' name="remove" onclick="decrease();" value="<%=post._id%>">
+                  remove
+                  </button>
+              </form> 
+           
+            </td>
+          <%total += post.orderprice%> <%});%>
+        </tr>
+          <tr>
+            <td>
+              <div class="add-to-cart">
+                <div class="btn-group">
+                  <button
+                    onclick="javascript:history.go(-1)"
+                    style="border-radius: 10px"
+                    class="btn-group btn-primary add-to-cart">
+                    continue shopping
+                  </button>
+                </div>
+              </div>
+            </td>
+            <td></td>
+            <td>
+              Total: GHS
+              <input
+                name="totalprice"
+                value="<%=total%>"
+                class="orderBorder"
+                readonly />
+            </td>
+            <td>
+              <input
+                type="submit"
+                onclick="alert('Your purchase was made successfully, we will get in touch with you soon')"
+                style="border-radius: 10px"
+                class="btn-success"
+                value="proceed to checkout" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    
+  </div>
+</div>
+
+<%- include("footer"); -%>

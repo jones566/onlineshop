@@ -31,7 +31,7 @@
                     <%postContent.forEach((post, index) => {%>
                         <% if(post.content === "Apartment") {%>
                     <div class="product">
-                      <form action="/apartments" method="post">
+                      <form action="/apartments" method="post" target="uploader_iframe">
                         <a href="posts/<%=post._id%>"
                             target="_self"><div class="product-img">
                             <img
@@ -60,6 +60,13 @@
                               name="name"
                               value="<%=post.productname%>"
                               readonly hidden/>
+                              <input
+                              style=" width: 160px;"
+                              class="orderBorder"
+                              type="text"
+                              name="image"
+                              value="<%=post.image%>"
+                              readonly hidden/>
                           </h3>
                           <h4 class="product-price header-cart-item-info">
                             <input
@@ -67,9 +74,9 @@
                               class="orderBorder"
                               type="text"
                               name="priceBody"
-                              value="GHS <%=post.announcement%>.00"
-                              readonly /><!--<%=post.announcement%>.00<del
-                            class="product-old-price"></del>-->
+                              value="<%=post.announcement%>.00"
+                              readonly />
+                              
                           </h4>
                           <% if (isAuthenticated) { %>
                           <input
@@ -97,7 +104,7 @@
                               name="order"
                               id="order"
                               value="Buy"
-                              onclick="alert('PURCHASE SUCCESSFUL!, WE WILL GET IN TOUCH SHORTLY')"
+                              onclick="cartCount()"
                               class="add-to-cart-btn block2-btn-towishlist" />
   
                             <%} else { %>
@@ -106,7 +113,7 @@
                               name="order"
                               id="order"
                               value="Rent"
-                              onclick="alert('RENT SUCCESSFUL!, WE WILL GET IN TOUCH SHORTLY')"
+                              onclick="cartCount()"
                               class="add-to-cart-btn block2-btn-towishlist" />
                             <% } %>
   
@@ -178,7 +185,7 @@
                     <%postContent.forEach((post, index) => {%>
                     <% if (post.content === "Apartment" && post.title === "For Sale") {%>
                     <div class="product">
-                      <form action="/apartments" method="post">
+                      <form action="/apartments" method="post" target="uploader_iframe">
                         <a href="posts/<%=post._id%>"
                             target="_self"><div class="product-img">
                             <img
@@ -207,6 +214,13 @@
                                name="name"
                                value="<%=post.productname%>"
                                readonly hidden/>
+                               <input
+                               style=" width: 160px;"
+                               class="orderBorder"
+                               type="text"
+                               name="image"
+                               value="<%=post.image%>"
+                               readonly hidden/>
                           </h3>
                           <h4 class="product-price header-cart-item-info">
                             <input
@@ -214,9 +228,9 @@
                               class="orderBorder"
                               type="text"
                               name="priceBody"
-                              value="GHS <%=post.announcement%>.00"
-                              readonly /><!--<%=post.announcement%>.00<del
-                            class="product-old-price"></del>-->
+                              value="<%=post.announcement%>.00"
+                              readonly />
+                              
                           </h4>
                           <% if (isAuthenticated) { %>
                           <input
@@ -243,7 +257,7 @@
                             name="order"
                             id="order"
                             value="Buy"
-                            onclick="alert('PURCHASE SUCCESSFUL!, WE WILL GET IN TOUCH SHORTLY')"
+                            onclick="cartCount()"
                             class="add-to-cart-btn block2-btn-towishlist" />
                           <% } else { %>
                           <input
@@ -260,6 +274,7 @@
                         >-->
                         </div>
                       </form>
+                      <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
                     </div>
                     <%}%>
                     <%});%>
@@ -300,7 +315,7 @@
                     <%postContent.forEach((post, index) => {%>
                     <% if(post.content === "Apartment" && post.title === "For Rent") {%>
                     <div class="product">
-                      <form action="/apartments" method="post">
+                      <form action="/apartments" method="post" target="uploader_iframe">
                         <a href="posts/<%=post._id%>"
                             target="_self"><div class="product-img">
                             <img
@@ -329,6 +344,13 @@
                             name="name"
                             value="<%=post.productname%>"
                             readonly hidden/>
+                            <input
+                            style=" width: 160px;"
+                            class="orderBorder"
+                            type="text"
+                            name="image"
+                            value="<%=post.image%>"
+                            readonly hidden/>
                           </h3>
                           <h4 class="product-price header-cart-item-info">
                             <input
@@ -336,9 +358,9 @@
                               class="orderBorder"
                               type="text"
                               name="priceBody"
-                              value="GHS <%=post.announcement%>.00"
-                              readonly /><!--<%=post.announcement%>.00<del
-                            class="product-old-price"></del>-->
+                              value="<%=post.announcement%>.00"
+                              readonly />
+                              
                           </h4>
                           <% if (isAuthenticated) { %>
                           <input
@@ -365,7 +387,7 @@
                             name="order"
                             id="order"
                             value="Rent"
-                            onclick="alert('RENT SUCCESSFUL!, WE WILL GET IN TOUCH SHORTLY')"
+                            onclick="cartCount()"
                             class="add-to-cart-btn block2-btn-towishlist" />
                           <% } else { %>
                           <input
@@ -382,6 +404,7 @@
                         >-->
                         </div>
                       </form>
+                      <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
                     </div>
                     <%}%>
                     <%});%>

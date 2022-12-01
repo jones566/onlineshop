@@ -20,7 +20,7 @@
                     </thead>
                     <tbody>
                       <%postContent.forEach((post, index) => {%>
-              <tr><td><%=post.productname%></td><td><img src='../<%=post.image%>' style='width:50px; height:50px; border:groove #000'></td><td><%=post.title%></td>
+              <tr><td><%=post.announcement1%></td><td><img src='../<%=post.image%>' style='width:50px; height:50px; border:groove #000'></td><td><%=post.title%></td>
                         <td><%=post.announcement%></td>
                         <td>
                           <form action="/deleteProduct" method="post">
@@ -44,7 +44,7 @@
                   </a>
                 </li>
     
-                <li class="page-item"><a class="page-link" href="productlist.php?page=<?php echo $b;?>"></a></li>
+                <li class="page-item"><a class="page-link" href=""></a></li>
                 <li class="page-item">
                   <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>

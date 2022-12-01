@@ -30,7 +30,13 @@ import _ from "lodash"; //lodash helps us to create a param which we can bind to
 import {uploadProductRouter, singleProductRouter, addProductsPageRouter, upload, 
        uploadOrderRouter, allOrderRouter, allProductsRouter, deleteProductRouter, 
        deleteOrderRouter, apartmentsRouter, housesRouter, apartmentOrderRouter, 
-       houseOrderRouter} 
+       houseOrderRouter,
+       cartpage,
+       deleteCartRouter,
+       uploadCartRouter,
+       deletePurchaseRouter,
+       allPurchaseRouter
+       } 
        from './routes/product.js';
 
 import homePageRouter from "./routes/product.js";
@@ -69,7 +75,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
        
-mongoose.connect("mongodb://127.0.0.1:27017/realestateDB");  //This connects you to Mongo db atlas
+mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/ecommerceDB");  //This connects you to Mongo db atlas
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -126,11 +132,21 @@ app.get("/admin/edituser", (req, res) => {
   });
 })
 
+app.get("/cartpage", cartpage);
+
+app.post("/cartpage", uploadCartRouter);
+
 app.get("/admin/productlist", allProductsRouter);
 
 app.get("/admin/orders", allOrderRouter);
 
+app.get("/admin/purchase",  allPurchaseRouter)
+
 app.post("/deleteOrder", deleteOrderRouter);
+
+app.post("/deletePurchase", deletePurchaseRouter);
+
+app.post("/deleteCart", deleteCartRouter);
 
 app.get("/admin/adduser", addUserRouter);
 

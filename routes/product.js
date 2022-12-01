@@ -1,5 +1,6 @@
 import Post from "../models/postModel.js";
 import Order from "../models/ordersModel.js";
+import Purchase from "../models/purchaseModel.js";
 import multer from "multer";
 
 
@@ -88,12 +89,44 @@ const allOrderRouter = (req, res) => {
   });
 };
 
+const allPurchaseRouter = (req, res) => {
+  Purchase.find({}, (err, posts) => {
+    res.render("admin/purchase", { productContent: posts, 
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user });
+  });
+};
+
 const deleteOrderRouter = (req, res) => {
   const checkedItemId = req.body.remove;
         Order.findByIdAndRemove(checkedItemId, (err) => {
           if(!err){ res.redirect("/admin/orders");}
         });
 }
+
+const deleteCartRouter = (req, res) => {
+  const checkedItemId = req.body.remove;
+        Order.findByIdAndRemove(checkedItemId, (err) => {
+          if(!err){ res.redirect("/cartpage");}
+        });
+}
+
+const deletePurchaseRouter = (req, res) => {
+  const removeItemId = req.body.remove;
+        Purchase.findByIdAndRemove(removeItemId, (err) => {
+          if(!err){ res.redirect("/admin/purchase");}
+        });
+}
+
+const cartpage = (req, res) => {
+  Order.find({}, (err, posts) => {
+    res.render("cartpage", {
+      postContent: posts,
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user
+    });
+  });
+};
 
 const uploadProductRouter = (req, res) => {
   const post = new Post({
@@ -128,7 +161,9 @@ const uploadOrderRouter = (req, res) => {
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
-    productname: req.body.name
+    productname: req.body.name,
+    productimage: req.body.image,
+    
   });
 
   order.save((err) => {
@@ -141,12 +176,34 @@ const uploadOrderRouter = (req, res) => {
   });
 };
 
+const uploadCartRouter = (req, res) => {
+  const purchase = new Purchase({
+    purchaseimage: req.body.image,
+    purchaseprice: req.body.price,
+    purchasetotalprice: req.body.totalprice,
+    purchaseslug: req.body.slug,
+    customername: req.body.customer
+    
+  });
+
+  purchase.save((err) => {
+    if (!err) {
+      res.redirect("/cartpage");
+    }
+    else{
+      console.log(err);
+    }
+  });
+};
+
 const apartmentOrderRouter = (req, res) => {
   const order = new Order({
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
-    productname: req.body.name
+    productname: req.body.name,
+    productimage: req.body.image,
+   
   });
 
   order.save((err) => {
@@ -164,7 +221,10 @@ const houseOrderRouter = (req, res) => {
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
-    productname: req.body.name
+    productname: req.body.name,
+    productimage: req.body.image,
+   
+   
   });
 
   order.save((err) => {
@@ -211,4 +271,4 @@ export default homePageRouter;
 export { uploadProductRouter, singleProductRouter, addProductsPageRouter,upload, 
          uploadOrderRouter, allOrderRouter, allProductsRouter, deleteProductRouter,
          deleteOrderRouter, apartmentsRouter,housesRouter, apartmentOrderRouter, 
-         houseOrderRouter};
+         houseOrderRouter, cartpage, deleteCartRouter, uploadCartRouter, deletePurchaseRouter, allPurchaseRouter};

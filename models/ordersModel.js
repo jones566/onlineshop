@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
   ordertitle: String,
-  orderprice: String,
+  orderprice: Number,
   customer: String,
-  productname: String 
+  productname: String,
+  productimage: String
 });
 
 const Order = mongoose.model("Order", orderSchema);
