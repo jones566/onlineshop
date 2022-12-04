@@ -35,7 +35,7 @@ import {uploadProductRouter, singleProductRouter, addProductsPageRouter, upload,
        deleteCartRouter,
        uploadCartRouter,
        deletePurchaseRouter,
-       allPurchaseRouter
+       allPurchaseRouter, checkoutpage
        } 
        from './routes/product.js';
 
@@ -134,7 +134,9 @@ app.get("/admin/edituser", (req, res) => {
 
 app.get("/cartpage", cartpage);
 
-app.post("/cartpage", uploadCartRouter);
+app.get("/checkout", checkoutpage);
+
+app.post("/checkout", uploadCartRouter);
 
 app.get("/admin/productlist", allProductsRouter);
 
@@ -192,7 +194,6 @@ app.post("/deleteUser", (req, res) => {
 }) //This line of code deletes a user from the database;
 
 app.post("/deleteProduct", deleteProductRouter)
-
 
 
 app.get("/apartments", apartmentsRouter);
@@ -273,7 +274,7 @@ app.get("/logout",(req, res) => {
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 8000;
+  port = 3000;
 }
 
-app.listen(port, () => console.log("Server is running on port 8000 and database is connected successfully"));
+app.listen(port, () => console.log("Server is running on port 3000 and database is connected successfully"));

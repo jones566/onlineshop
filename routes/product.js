@@ -128,6 +128,16 @@ const cartpage = (req, res) => {
   });
 };
 
+const checkoutpage = (req, res) => {
+  Order.find({}, (err, posts) => {
+    res.render("checkout", {
+      postContent: posts,
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user
+    });
+  });
+};
+
 const uploadProductRouter = (req, res) => {
   const post = new Post({
     title: req.body.postTitle,
@@ -188,7 +198,7 @@ const uploadCartRouter = (req, res) => {
 
   purchase.save((err) => {
     if (!err) {
-      res.redirect("/cartpage");
+      res.redirect("/index");
     }
     else{
       console.log(err);
@@ -271,4 +281,5 @@ export default homePageRouter;
 export { uploadProductRouter, singleProductRouter, addProductsPageRouter,upload, 
          uploadOrderRouter, allOrderRouter, allProductsRouter, deleteProductRouter,
          deleteOrderRouter, apartmentsRouter,housesRouter, apartmentOrderRouter, 
-         houseOrderRouter, cartpage, deleteCartRouter, uploadCartRouter, deletePurchaseRouter, allPurchaseRouter};
+         houseOrderRouter, cartpage, deleteCartRouter, uploadCartRouter, deletePurchaseRouter, 
+         allPurchaseRouter, checkoutpage};

@@ -2,6 +2,7 @@
 
 <div class="card-body container" style="color: black; background-color: white">
   <div class="table-responsive ps">
+    <form action="/checkout" method="post">
       <table class="table tablesorter col-md-14"  id="">
         <thead class="text-primary">
           <tr>
@@ -28,19 +29,21 @@
                 style="width: 50px; height: 50px; border: groove #000" />
             </td>
             <td>
-                <%=post.ordertitle%>
+              <input
+                name="slug"
+                value="<%=post.ordertitle%>"
+                class="orderBorder"
+                readonly />
             </td>
             <td>
-                <%=post.orderprice%>
+              GHS
+              <input
+                name="price"
+                value="<%=post.orderprice%>"
+                class="orderBorder"
+                readonly />
             </td>
-            <td>
-              
-              <form action="/deleteCart" method="post">
-                <button type='submit' class='btn-danger' name="remove" onclick="decrease();" value="<%=post._id%>">
-                  remove
-                  </button>
-              </form> 
-           
+            <td> 
             </td>
           <%total += post.orderprice%> <%});%>
         </tr>
@@ -48,31 +51,30 @@
             <td>
               <div class="add-to-cart">
                 <div class="btn-group">
-                  <button
-                    onclick="javascript:history.go(-1)"
-                    style="border-radius: 10px"
-                    class="btn-group btn-primary add-to-cart">
-                    continue shopping
-                  </button>
                 </div>
               </div>
             </td>
             <td></td>
             <td>
               Total: GHS
-              <%=total%>
+              <input
+                name="totalprice"
+                value="<%=total%>"
+                class="orderBorder"
+                readonly />
             </td>
             <td>
-              <a href="checkout"><input
-                type="button"
-                onclick=""
+              <input
+                type="submit"
+                onclick="alert('Your purchase was made successfully, we will get in touch with you soon')"
                 style="border-radius: 10px"
                 class="btn-success"
-                value="proceed to checkout" /></a>
+                value="continue checkout" />
             </td>
           </tr>
         </tbody>
       </table>
+    </form>
     
   </div>
 </div>
