@@ -75,7 +75,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
        
-mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/ecommerceDB");  //This connects you to Mongo db atlas
+mongoose.connect(process.env.MONGO_URI);  //This connects you to Mongo db atlas
 
 const userSchema = new mongoose.Schema({
   username: String,
