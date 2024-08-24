@@ -20,8 +20,8 @@ import express from "express"; //This is the framework library
 import bodyParser from "body-parser"; //Body parser helps to connect our name field to our backend
 import session from "express-session"; // This is what stores the user session
 import passport from "passport"; // passport is used to authenticate a user 
-import passportLocalMongoose from "passport-local-mongoose"; // It is used in combination with passport to ensure use login
-import _ from "lodash"; //lodash helps us to create a param which we can bind to our products so that we can view the individually
+import passportLocalMongoose from "passport-local-mongoose"; // It is used in combination with passport to ensure user login
+import _ from "lodash"; //lodash helps us to create a param which we can bind to our products so that we can view them individually
 
 
 
@@ -30,12 +30,13 @@ import _ from "lodash"; //lodash helps us to create a param which we can bind to
 import {uploadProductRouter, singleProductRouter, addProductsPageRouter, upload, 
        uploadOrderRouter, allOrderRouter, allProductsRouter, deleteProductRouter, 
        deleteOrderRouter, apartmentsRouter, housesRouter, apartmentOrderRouter, 
-       houseOrderRouter,
-       cartpage,
-       deleteCartRouter,
-       uploadCartRouter,
-       deletePurchaseRouter,
-       allPurchaseRouter, checkoutpage
+       houseOrderRouter, cartpage, deleteCartRouter, uploadCartRouter, deletePurchaseRouter,
+       allPurchaseRouter, checkoutpage, menRouter, menOrderRouter, 
+       ladiesSunglassesRouter, ladiesSunglassesOrderRouter, ladiesFootwearRouter,
+       ladiesFootwearOrderRouter, ladiesDressRouter, ladiesDressOrderRouter, 
+       ladiesBagsRouter, ladiesBagsOrderRouter, ladiesWatchRouter, ladiesWatchesOrderRouter, 
+       menWatchRouter, menWatchesOrderRouter, menDressRouter, menDressOrderRouter, menFootwearRouter, 
+       menFootwearOrderRouter
        } 
        from './routes/product.js';
 
@@ -56,7 +57,6 @@ dotenv.config();
 const app = express();
 
 
-
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -67,7 +67,7 @@ app.use(express.json());
 
 //This uses a session to store user info when logged in, the session expires when the user logs out
 app.use(session({
-  secret: "ThisisOurLittleSecret",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -75,7 +75,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
        
-mongoose.connect("mongodb+srv://admin-Jones:Malachi456.@atlascluster.gps7jki.mongodb.net/ecommerceDB");  //This connects you to Mongo db atlas
+mongoose.connect(process.env.MONGO_URI);  //This connects you to Mongo db atlas
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -134,9 +134,11 @@ app.get("/admin/edituser", (req, res) => {
 
 app.get("/cartpage", cartpage);
 
+app.post("/cartpage", uploadCartRouter);
+
 app.get("/checkout", checkoutpage);
 
-app.post("/checkout", uploadCartRouter);
+//app.post("/checkout", uploadCartRouter);
 
 app.get("/admin/productlist", allProductsRouter);
 
@@ -196,13 +198,49 @@ app.post("/deleteUser", (req, res) => {
 app.post("/deleteProduct", deleteProductRouter)
 
 
-app.get("/apartments", apartmentsRouter);
+app.get("/ladies", apartmentsRouter);
 
-app.post("/apartments", apartmentOrderRouter);
+app.post("/ladies", apartmentOrderRouter);
 
-app.get("/houses", housesRouter);
+app.get("/ladiessunglass", ladiesSunglassesRouter);
 
-app.post("/houses", houseOrderRouter);
+app.post("/ladiessunglass", ladiesSunglassesOrderRouter);
+
+app.get("/ladiesfootwear", ladiesFootwearRouter);
+
+app.post("/ladiesfootwear", ladiesFootwearOrderRouter);
+
+app.get("/ladiesdress", ladiesDressRouter);
+
+app.post("/ladiesdress", ladiesDressOrderRouter);
+
+app.get("/ladiesbags", ladiesBagsRouter);
+
+app.post("/ladiesbags", ladiesBagsOrderRouter);
+
+app.get("/ladieswatches", ladiesWatchRouter);
+
+app.post("/ladieswatches", ladiesWatchesOrderRouter);
+
+app.get("/menwatches", menWatchRouter);
+
+app.post("/menwatches", menWatchesOrderRouter);
+
+app.get("/mendress", menDressRouter);
+
+app.post("/mendress", menDressOrderRouter);
+
+app.get("/menfootwear", menFootwearRouter);
+
+app.post("/menfootwear", menFootwearOrderRouter);
+
+app.get("/electronics", housesRouter);
+
+app.post("/electronics", houseOrderRouter);
+
+app.get("/men", menRouter);
+
+app.post("/men", menOrderRouter);
 
 app.get("/index", homePageRouter);
 

@@ -6,8 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>wpltd</title>
-
+		<title>EsteeOnlineShop</title>
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
@@ -65,8 +64,8 @@
 				  document.querySelector(".nav span").textContent = productNumbers - 1;
 				}
 				else {
-					localStorage.setItem("cartNumber", -1);
-					document.querySelector(".nav span").textContent = -1;
+					localStorage.setItem("cartNumber", 0);
+					document.querySelector(".nav span").textContent = 0;
 				}
 
 				
@@ -99,6 +98,7 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
     <style>
+
         #navigation {
 			background: #FF4E50;  /* fallback for old browsers */
             background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);  /* Chrome 10-25, Safari 5.1-6 */
@@ -171,7 +171,11 @@
     width: 50px;
     margin-top: 40px;
    }   
-        
+   @media (min-width: 1025px) {
+.h-custom {
+height: 100vh !important;
+}
+}
         </style>
 
     </head>
@@ -219,7 +223,7 @@
 							<div class="header-logo">
 								<a href="#" class="logo">
 								<font style="font-style:normal; font-size: 33px;color: aliceblue;font-family: serif;">
-									<a href="index"><img src="./images/logo.jpg" id="UDS_logo" style="border-radius:25px;"></a>
+									<a href="index"><img src="./images/fanta.png" id="UDS_logo" style="border-radius:25px;"></a>
                                     </font>
 									
 								</a>
@@ -257,8 +261,8 @@
 								  <div class="collapse navbar-collapse" id="myNavbar">
 									<ul class="nav navbar-nav">
 									  <li class="active"><a href="index">Home</a></li>
-									  <li><a href="houses">Houses</a></li>
-									  <li><a href="apartments">Apartments</a></li>  
+									  <li><a href="ladies">Ladies Wears</a></li>
+									  <li><a href="men">Men's Wears</a></li>  
 									</ul>
 									
 								  </div>
@@ -272,7 +276,7 @@
                        
 
 						<!-- ACCOUNT -->
-						<div class="col-md-3 clearfix">
+						<div class="col-md-3 clearfix" style="margin-top: 50px;">
 							<div class="header-ctn">
 								
 
@@ -347,4 +351,3 @@
 
                         </div>
                       </div>
-		

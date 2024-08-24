@@ -5,7 +5,10 @@ const purchaseSchema = new mongoose.Schema({
   purchaseprice: [],
   purchasetotalprice: [],
   purchaseslug: [],
-  customername: []
+  customername: [],
+  size: [],
+  quantity: [],
+  color: []
   
 });
 

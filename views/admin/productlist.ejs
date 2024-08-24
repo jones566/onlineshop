@@ -15,12 +15,12 @@
                 <div class="table-responsive ps">
                   <table class="table tablesorter " id="page1">
                     <thead class=" text-primary">
-                      <tr><th>Product Name</th><th>Image</th><th>Description</th><th>Price</th><th>
+                      <tr><th>Image name</th><th>Image</th><th>Description</th><th>Price</th><th>
 	<a class=" btn btn-primary" href="addproduct">Add New</a></th></tr>
                     </thead>
                     <tbody>
                       <%postContent.forEach((post, index) => {%>
-              <tr><td><%=post.announcement1%></td><td><img src='../<%=post.image%>' style='width:50px; height:50px; border:groove #000'></td><td><%=post.title%></td>
+              <tr><td><%=post.image%></td><td><img src='../<%=post.image%>' style='width:50px; height:50px; border:groove #000'></td><td><%=post.title%></td>
                         <td><%=post.announcement%></td>
                         <td>
                           <form action="/deleteProduct" method="post">

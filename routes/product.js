@@ -15,30 +15,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).fields([
 {
   name: "image"
-},
-{
-  name: "image2"
-},
-{
-  name: "image3"
-},
-{
-  name: "image4" 
-},
-{
-  name: "image5"
-},
-{
-  name: "image6"
-},
-{
-  name: "image7" 
-},
-{
-  name: "image8"
-},
-{
-  name: "image9"
 }
 ])
 
@@ -67,7 +43,7 @@ const homePageRouter = (req, res) => {
 
 const apartmentsRouter = (req, res) => {
   Post.find({}, (err, posts) => {
-    res.render("apartments", { postContent: posts, 
+    res.render("ladies", { postContent: posts, 
       isAuthenticated: req.isAuthenticated(),
       user: req.user });
   });
@@ -75,9 +51,185 @@ const apartmentsRouter = (req, res) => {
 
 const housesRouter = (req, res) => {
   Post.find({}, (err, posts) => {
-    res.render("houses", { postContent: posts, 
+    res.render("electronics", { postContent: posts, 
       isAuthenticated: req.isAuthenticated(),
       user: req.user });
+  });
+};
+
+const menRouter = (req, res) => {
+  Post.find({}, (err, posts) => {
+    res.render("men", { postContent: posts, 
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user });
+  });
+};
+
+const ladiesSunglassesRouter = (req, res) => {
+  Post.find({}, (err, posts) => {
+    res.render("sunglass", { postContent: posts, 
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user });
+  });
+};
+
+const ladiesSunglassesOrderRouter = (req, res) => {
+  const order = new Order({
+    ordertitle: req.body.catBody,
+    orderprice: req.body.priceBody,
+    customer: req.body.userBody,
+    productname: req.body.name,
+    productimage: req.body.image,
+   
+  });
+
+  order.save((err) => {
+    if (!err) {
+      res.redirect("/ladiessunglass");
+    }
+    else{
+      console.log(err);
+    }
+  });
+};
+
+const ladiesFootwearRouter = (req, res) => {
+  Post.find({}, (err, posts) => {
+    res.render("footwear", { postContent: posts, 
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user });
+  });
+};
+
+const ladiesFootwearOrderRouter = (req, res) => {
+  const order = new Order({
+    ordertitle: req.body.catBody,
+    orderprice: req.body.priceBody,
+    customer: req.body.userBody,
+    productname: req.body.name,
+    productimage: req.body.image,
+   
+  });
+
+  order.save((err) => {
+    if (!err) {
+      res.redirect("/ladiesfootwear");
+    }
+    else{
+      console.log(err);
+    }
+  });
+};
+
+const ladiesDressRouter = (req, res) => {
+  Post.find({}, (err, posts) => {
+    res.render("dress", { postContent: posts, 
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user });
+  });
+};
+
+const ladiesDressOrderRouter = (req, res) => {
+  const order = new Order({
+    ordertitle: req.body.catBody,
+    orderprice: req.body.priceBody,
+    customer: req.body.userBody,
+    productname: req.body.name,
+    productimage: req.body.image,
+   
+  });
+
+  order.save((err) => {
+    if (!err) {
+      res.redirect("/ladiesdress");
+    }
+    else{
+      console.log(err);
+    }
+  });
+};
+
+const ladiesBagsRouter = (req, res) => {
+  Post.find({}, (err, posts) => {
+    res.render("bags", { postContent: posts, 
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user });
+  });
+};
+
+const ladiesBagsOrderRouter = (req, res) => {
+  const order = new Order({
+    ordertitle: req.body.catBody,
+    orderprice: req.body.priceBody,
+    customer: req.body.userBody,
+    productname: req.body.name,
+    productimage: req.body.image,
+   
+  });
+
+  order.save((err) => {
+    if (!err) {
+      res.redirect("/ladiesbags");
+    }
+    else{
+      console.log(err);
+    }
+  });
+};
+
+const ladiesWatchRouter = (req, res) => {
+  Post.find({}, (err, posts) => {
+    res.render("watches", { postContent: posts, 
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user });
+  });
+};
+
+const ladiesWatchesOrderRouter = (req, res) => {
+  const order = new Order({
+    ordertitle: req.body.catBody,
+    orderprice: req.body.priceBody,
+    customer: req.body.userBody,
+    productname: req.body.name,
+    productimage: req.body.image,
+   
+  });
+
+  order.save((err) => {
+    if (!err) {
+      res.redirect("/ladieswatches");
+    }
+    else{
+      console.log(err);
+    }
+  });
+};
+
+const menWatchRouter = (req, res) => {
+  Post.find({}, (err, posts) => {
+    res.render("menwatches", { postContent: posts, 
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user });
+  });
+};
+
+const menWatchesOrderRouter = (req, res) => {
+  const order = new Order({
+    ordertitle: req.body.catBody,
+    orderprice: req.body.priceBody,
+    customer: req.body.userBody,
+    productname: req.body.name,
+    productimage: req.body.image,
+   
+  });
+
+  order.save((err) => {
+    if (!err) {
+      res.redirect("/menwatches");
+    }
+    else{
+      console.log(err);
+    }
   });
 };
 
@@ -86,6 +238,62 @@ const allOrderRouter = (req, res) => {
     res.render("admin/orders", { postContent: posts, 
       isAuthenticated: req.isAuthenticated(),
       user: req.user });
+  });
+};
+
+const menDressRouter = (req, res) => {
+  Post.find({}, (err, posts) => {
+    res.render("mendress", { postContent: posts, 
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user });
+  });
+};
+
+const menDressOrderRouter = (req, res) => {
+  const order = new Order({
+    ordertitle: req.body.catBody,
+    orderprice: req.body.priceBody,
+    customer: req.body.userBody,
+    productname: req.body.name,
+    productimage: req.body.image,
+   
+  });
+
+  order.save((err) => {
+    if (!err) {
+      res.redirect("/mendress");
+    }
+    else{
+      console.log(err);
+    }
+  });
+};
+
+const menFootwearRouter = (req, res) => {
+  Post.find({}, (err, posts) => {
+    res.render("menfootwear", { postContent: posts, 
+      isAuthenticated: req.isAuthenticated(),
+      user: req.user });
+  });
+};
+
+const menFootwearOrderRouter = (req, res) => {
+  const order = new Order({
+    ordertitle: req.body.catBody,
+    orderprice: req.body.priceBody,
+    customer: req.body.userBody,
+    productname: req.body.name,
+    productimage: req.body.image,
+   
+  });
+
+  order.save((err) => {
+    if (!err) {
+      res.redirect("/menfootwear");
+    }
+    else{
+      console.log(err);
+    }
   });
 };
 
@@ -107,7 +315,9 @@ const deleteOrderRouter = (req, res) => {
 const deleteCartRouter = (req, res) => {
   const checkedItemId = req.body.remove;
         Order.findByIdAndRemove(checkedItemId, (err) => {
-          if(!err){ res.redirect("/cartpage");}
+          if(!err){
+             res.redirect("/cartpage");
+            }
         });
 }
 
@@ -141,19 +351,16 @@ const checkoutpage = (req, res) => {
 const uploadProductRouter = (req, res) => {
   const post = new Post({
     title: req.body.postTitle,
+    stock: req.body.stockTitle,
+    state: req.body.stateTitle,
+    discount: req.body.discountTitle,
+    oldprice: req.body.oldprice,
+    popularity: req.body.popularity,
     content: req.body.postBody,
     announcement1: req.body.announcement1,
     announcement: req.body.announcement,
     productname: req.body.name,
-    image: req.files['image'][0].filename,
-    image2: req.files['image2'][0].filename,
-    image3: req.files['image3'][0].filename,
-    image4: req.files['image4'][0].filename,
-    image5: req.files['image5'][0].filename,
-    image6: req.files['image6'][0].filename,
-    image7: req.files['image7'][0].filename,
-    image8: req.files['image8'][0].filename,
-    image9: req.files['image9'][0].filename
+    image: req.files['image'][0].filename
   });
 
   post.save((err) => {
@@ -188,17 +395,20 @@ const uploadOrderRouter = (req, res) => {
 
 const uploadCartRouter = (req, res) => {
   const purchase = new Purchase({
-    purchaseimage: req.body.image,
+    purchaseimage: req.body.purchimage,
     purchaseprice: req.body.price,
     purchasetotalprice: req.body.totalprice,
     purchaseslug: req.body.slug,
-    customername: req.body.customer
+    customername: req.body.customer,
+    size: req.body.size,
+    quantity: req.body.quantity,
+    color: req.body.color
     
   });
 
   purchase.save((err) => {
     if (!err) {
-      res.redirect("/index");
+      res.redirect("/checkout");
     }
     else{
       console.log(err);
@@ -218,7 +428,7 @@ const apartmentOrderRouter = (req, res) => {
 
   order.save((err) => {
     if (!err) {
-      res.redirect("/apartments");
+      res.redirect("/ladies");
     }
     else{
       console.log(err);
@@ -232,20 +442,39 @@ const houseOrderRouter = (req, res) => {
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
     productname: req.body.name,
-    productimage: req.body.image,
-   
-   
+    productimage: req.body.image, 
   });
 
   order.save((err) => {
     if (!err) {
-      res.redirect("/houses");
+      res.redirect("/electronics");
     }
     else{
       console.log(err);
     }
   });
 };
+
+const menOrderRouter = (req, res) => {
+  const order = new Order({
+    ordertitle: req.body.catBody,
+    orderprice: req.body.priceBody,
+    customer: req.body.userBody,
+    productname: req.body.name,
+    productimage: req.body.image, 
+  });
+
+  order.save((err) => {
+    if (!err) {
+      res.redirect("/men");
+    }
+    else{
+      console.log(err);
+    }
+  });
+};
+
+
 
 
 const singleProductRouter = (req, res, next) => {
@@ -258,15 +487,9 @@ const singleProductRouter = (req, res, next) => {
       content: post.content,
       announcement1: post.announcement1,
       announcement: post.announcement,
+      oldprice: post.oldprice,
+      stock: post.stock,
       image: post.image,
-      image2: post.image2,
-      image3: post.image3,
-      image4: post.image4,
-      image5: post.image5,
-      image6: post.image6,
-      image7: post.image7,
-      image8: post.image8,
-      image9: post.image9,
       isAuthenticated: req.isAuthenticated(),
       user: req.user
     });
@@ -282,4 +505,8 @@ export { uploadProductRouter, singleProductRouter, addProductsPageRouter,upload,
          uploadOrderRouter, allOrderRouter, allProductsRouter, deleteProductRouter,
          deleteOrderRouter, apartmentsRouter,housesRouter, apartmentOrderRouter, 
          houseOrderRouter, cartpage, deleteCartRouter, uploadCartRouter, deletePurchaseRouter, 
-         allPurchaseRouter, checkoutpage};
+         allPurchaseRouter, checkoutpage, menRouter, menOrderRouter, ladiesSunglassesRouter, 
+         ladiesSunglassesOrderRouter, ladiesFootwearRouter, ladiesFootwearOrderRouter, ladiesDressRouter,
+         ladiesDressOrderRouter, ladiesBagsRouter, ladiesBagsOrderRouter, ladiesWatchRouter, 
+         ladiesWatchesOrderRouter, menDressRouter, menDressOrderRouter, menFootwearRouter, menFootwearOrderRouter,
+         menWatchRouter, menWatchesOrderRouter};

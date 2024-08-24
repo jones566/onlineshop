@@ -21,8 +21,18 @@
                   <div class="form-group">
                     <label>Product Title</label>
                     <select name="postTitle" id="content" class="form-control">
-                      <option id="Rent">For Rent</option>
-                      <option id="Sale">For Sale</option>
+                      <option id="Ladies-wear">Ladies wear</option>
+                      <option id="Men's-wear">Men's wear</option>
+                    </select>
+                    <label>Product Stock</label>
+                    <select name="stockTitle" id="stock" class="form-control">
+                      <option id="IN-STOCK">IN STOCK</option>
+                      <option id="OUT-OF-STOCK">OUT OF STOCK</option>
+                    </select>
+                    <label>Product State</label>
+                    <select name="stateTitle" id="stock" class="form-control">
+                      <option id="New">New</option>
+                      <option id="Old">Old</option>
                     </select>
                     <!--<input
                       type="text"
@@ -68,12 +78,40 @@
 
                 <div class="col-md-12">
                   <div class="form-group">
+                    <label>Old price</label>
+                    <input
+                      type="text"
+                      id="old_price"
+                      name="oldprice"
+                      class="form-control" />
+                  </div>
+                </div>
+
+                <label>Popularity</label>
+                    <select name="popularity" id="stock" class="form-control">
+                      <option id="Popular">Top Selling</option>
+                      <option id="none"></option>
+                    </select>
+
+                <div class="col-md-12">
+                  <div class="form-group">
                     <label>Product Name</label>
                     <input
                       type="text"
                       id="price"
                       name="name"
                       required
+                      class="form-control" />
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Discount</label>
+                    <input
+                      type="text"
+                      id="price"
+                      name="discountTitle"
                       class="form-control" />
                   </div>
                 </div>
@@ -93,9 +131,16 @@
                   <div class="form-group">
                     <label>Product Category</label>
                     <select name="postBody" id="content" class="form-control">
-                      <option id="Apartment">Apartment</option>
-                      <option id="House">House</option>
+                      <option id="sunglasses">Sunglasses</option>
+                      <option id="footwear">footwear</option>
+                      <option id="dress">dress</option>
+                      <option id="bags">bags</option>
+                      <option id="watches">watches</option>
+                      <option id="mendress">mendress</option>
+                      <option id="menwatches">menwatches</option>
+                      <option id="menfootwear">menfootwear</option>
                     </select>
+                    <!--<input name="postBody" id="content" class="form-control" />j-->
                   </div>
                 </div>
               </div>

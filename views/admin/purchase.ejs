@@ -1,53 +1,79 @@
+<%- include("sidenav"); -%>
+<%- include("topheader"); -%>
+<!-- End Navbar -->
 
-    <%- include("sidenav"); -%>
-    <%- include("topheader"); -%>
-      <!-- End Navbar -->
-      
 
-      <div class="content">
-        <div class="container-fluid">
-          <!-- your content here -->
-          <div class="col-md-14">
-            <div class="card ">
-              <div class="card-header card-header-primary">
-                <h4 class="card-title">PURCHASED ITEMS  </h4>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive ps">
-                 
-                  <table class="table table-hover tablesorter " id="">
-                    <thead class=" text-primary">
-                      <tr><th>Product Slug</th><th>Product Price</th><th>Customer Name</th>
-                    </tr></thead>
-                    <%productContent.forEach((post) => {%>
-                    <tbody>
-                      
-                        
-                        <tr>
-                          <td><%=post.purchaseslug%></td><td><%=post.purchaseprice%></td>
-                          <td>
-                            <%=post.customername%>
-                          </td>
-                        </tr>
-                        <tr><td></td><td></td><td>Total Price: GHS <%=post.purchasetotalprice%></td><td>
-                          <form action="/deletePurchase" method="post">
-                          <button type='submit' class='btn-danger' name="remove" value="<%=post._id%>">
-                            Delete
-                          </button>
-                          </form>
-                        </td></tr>
-                       
-                    </tbody>
-                    <%});%>
-                  </table>
-                  
-                 
-                  
-                <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-              </div>
+<div class="content">
+  <div class="container-fluid">
+    <!-- your content here -->
+    <div class="col-md-14">
+      <div class="card ">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">PURCHASED ITEMS </h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive ps">
+
+            <table class="table table-hover tablesorter " id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th>Product Image</th>
+                  <th>Product Slug</th>
+                  <th>Product Price</th>
+                  <th>Customer Name</th>
+                  <th>S</th>
+                  <th>Q</th>
+                  <th>C</th>
+                </tr>
+              </thead>
+              <%productContent.forEach((post) => {%>
+              <tbody>
+
+
+                <tr>
+                  <td><%= post.purchaseimage %></td>
+                  <td><%= post.purchaseslug %></td>
+                  <td><%= post.purchaseprice %></td>
+                  <td><%= post.customername %></td>
+                  <% if (post.size === "small" || post.size === "medium" || post.size === "large" || post.size === "x-large" || post.size === "xx-large" ) {%>
+                  <td><%= post.size %></td>
+                  <% } else { %>
+                    <td><%= post.size %></td>
+                    <% } %>
+                  <td><%= post.quantity %></td>
+                  <td><%= post.color %></td>
+
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Total Price: GHS <%=post.purchasetotalprice%></td>
+                  <td>
+                    <form action="/deletePurchase" method="post">
+                      <button type='submit' class='btn-danger' name="remove" value="<%=post._id%>">
+                        Delete
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+
+              </tbody>
+              <%});%>
+            </table>
+
+
+
+            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+              <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+            </div>
+            <div class="ps__rail-y" style="top: 0px; right: 0px;">
+              <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
             </div>
           </div>
-          
         </div>
       </div>
-      <%- include("footer"); -%>
+    </div>
+
+  </div>
+</div>
+<%- include("footer"); -%>
