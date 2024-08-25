@@ -69,7 +69,8 @@ app.use(express.json());
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true,
+  cookie: { secure: true } // Set secure: true if using HTTPS
 }));
 
 app.use(passport.initialize());
@@ -307,6 +308,40 @@ app.get("/logout",(req, res) => {
     }
   }); 
 });
+
+//Something else
+app.post('/cart/add', (req, res) => {
+  if (!req.session.cartNumber) {
+    req.session.cartNumber = 1;
+  } else {
+    req.session.cartNumber += 1;
+  }
+  res.json({ cartNumber: req.session.cartNumber });
+});
+
+app.post('/cart/decrease', (req, res) => {
+  if (req.session.cartNumber && req.session.cartNumber > 0) {
+    req.session.cartNumber -= 1;
+  } else {
+    req.session.cartNumber = 0;
+  }
+  res.json({ cartNumber: req.session.cartNumber });
+});
+
+app.get('/cart/number', (req, res) => {
+  res.json({ cartNumber: req.session.cartNumber || 0 });
+});
+
+app.post('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).send("Error logging out");
+    }
+    res.redirect('/index');
+  });
+});
+
+
 
 //The below lines of code connects you to either the cloud or local host 
 
