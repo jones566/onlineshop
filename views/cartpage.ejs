@@ -5,9 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cartpage</title>
   <style>
-    @media (min-width: 1025px) {
-      .h-custom {
-        height: 100vh !important;
+    /* Media queries for smaller screens */
+    @media (max-width: 541px) {
+      .product-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .product-row img {
+        margin-bottom: 15px;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+        width: 100%;
+      }
+
+      .input-group {
+        flex-direction: column;
+        width: 20px;
+      }
+
+      .input-group>div {
+        width: 70%;
+        margin-bottom: 10px;
+      }
+
+      .input-group>div:last-child {
+        margin-bottom: 0;
+      }
+      #Ghanacedis {
+       margin-left: 15px;
+      }
+      #imagename {
+       margin-left: 120px;
+      }
+      #color {
+        width: 70px;
+      }
+      #sizes {
+        width: 70px;
+      }
+      .correct {
+        margin-left: 50px;
+      }
+      .but {
+        margin-right: 50px;
+      }
+    }
+
+    @media (min-width: 501px) and (max-width: 767px) {
+      .product-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .product-row img {
+        margin-bottom: 15px;
+      }
+
+      .input-group {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+
+      .input-group>div {
+        width: 48%;
       }
     }
   </style>
@@ -20,7 +88,6 @@
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script>
-
     const addCart = document.querySelectorAll(".order");
 
     for (var i = 0; i < addCart.length; i++) {
@@ -41,8 +108,6 @@
         localStorage.setItem("cartNumber", 1);
         document.querySelector(".nav span").textContent = 1;
       }
-
-
     }
 
     function decrease() {
@@ -57,8 +122,6 @@
         localStorage.setItem("cartNumber", 0);
         document.querySelector(".nav span").textContent = 0;
       }
-
-
     }
 
     window.onload = function loadCartNumbers() {
@@ -72,7 +135,6 @@
       var p = o.parentNode.parentNode;
       p.parentNode.removeChild(p);
     }
-
   </script>
 </head>
 
@@ -80,7 +142,7 @@
   <section class="h-100 h-custom" style="background-color: #eee;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col">
+        <div class="col-12">
           <div class="card">
             <div class="card-body p-4">
 
@@ -97,234 +159,139 @@
                         <p class="mb-1">Shopping cart</p>
                         <p class="mb-0 nav">You have &nbsp; <span>0</span>&nbsp; items in your cart</p>
                       </div>
-                      <!--<div>
-                        <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
-                              class="fas fa-angle-down mt-1"></i></a></p>
-                      </div>-->
                     </div>
 
-                    <%var total = 0;%><%postContent.forEach((post) => {%> <% if
-                      (isAuthenticated) { %>
-                    <input type="text" name="customer" value="<%=user.username%>" readonly hidden />
-                    <%}%>
-                    <div class="card mb-3">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                          <div class="d-flex flex-row align-items-center">
+                    <% var total = 0; %>
+                    <% postContent.forEach((post) => { %>
+                      <% if (isAuthenticated) { %>
+                        <input type="text" name="customer" value="<%= user.username %>" readonly hidden />
+                      <% } %>
+                      <div class="card mb-3">
+                        <div class="card-body">
+                          <div class="d-flex justify-content-between product-row">
                             <div>
-                              <img id="myImage"
-                                src="./<%=post.productimage%>"
-                    class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                            <input
-                            style=" width: 160px;
-                              border-top-style: hidden;
+                              <img id="myImage" src="./<%= post.productimage %>" class="img-fluid rounded-3"
+                                alt="Shopping item" style="width: 65px;">
+                              <input type="text" name="purchimage" value="<%= post.productimage %>" readonly hidden />
+                            </div>
+                            <div class="input-group" id="imagename">
+                              <div class="">
+                                <input type="text"
+                                style="border-top-style: hidden;
+                                border-left-style: hidden;
+                                border-right-style: hidden;
+                                border-bottom-style: hidden;
+                                outline: none;
+                                cursor: default;
+                                width: 100px;"
+                                name="slug" value="<%= post.ordertitle %>"
+                                class="orderBorder" readonly />
+                              </div>
+                              <div class="form-group" id="Ghanacedis">
+                                GHS<input type="text" 
+                                name="price"
+                                style="border-top-style: hidden;
                               border-left-style: hidden;
                               border-right-style: hidden;
                               border-bottom-style: hidden;
                               outline: none;
                               cursor: default;
-                            "
-                            type="text"
-                            name="purchimage"
-                            value="<%=post.productimage%>"
-                            readonly hidden/>
-                </div>
-                <div class="ms-3">
-                  <input style="border-top-style: hidden;
-                              border-left-style: hidden;
-                              border-right-style: hidden;
-                              border-bottom-style: hidden;
-                              outline: none;
-                              cursor: default;
-                              width: 100px;" name="slug" value="<%=post.ordertitle%>" class="orderBorder" readonly />
-                  <!--<h5><%=post.ordertitle%></h5>-->
-                  <!--<p class="small mb-0">256GB, Navy Blue</p>-->
-                </div>
-              </div>
-              <div class="d-flex flex-row align-items-center">
-                <!--<div style="width: 50px;">
-                              <h5 class="fw-normal mb-0">2</h5>
-                            </div>-->
-                <div style="width: 80px;">
-                  GHS<input style="
-                              border-top-style: hidden;
-                              border-left-style: hidden;
-                              border-right-style: hidden;
-                              border-bottom-style: hidden;
-                              outline: none;
-                              cursor: default;
-                              width: 40px;" name="price" value="<%=post.orderprice%>" class="orderBorder" readonly />
-                </div>
-                <% if (post.ordertitle === "mendress" || post.ordertitle === "dress" ) {%>
-                <div style="width: 70px; margin: 5px;">
-                  <div class="form-group">
-                    <select id="size" name="size" class="form-control">
-                      <option value="" disabled selected>size</option>
-                      <option value="small">(S)</option>
-                      <option value="medium">(M)</option>
-                      <option value="large">(L)</option>
-                      <option value="x-large">(XL)</option>
-                      <option value="xx-large">(XXL)</option>
-                    </select>
-                  </div>
-                </div>
-                <% } %>
-                <% if (post.ordertitle === "menfootwear" || post.ordertitle === "footwear" ) {%>
-                <div style="width: 70px; margin: 5px;">
-                  <div class="form-group">
-                    <input type="number" id="size" name="size" class="form-control" placeholder="size">
-                  </div>
-                </div>
-                <% } %>
-                <div style="width: 70px; margin: 5px;">
-                  <div class="form-group">
-                    <input type="number" id="quantity" name="quantity" class="form-control" placeholder="Qty">
-                  </div>
-                </div>
-                <div style="width: 70px; margin: 5px;">
-                  <div class="form-group">
-                    <select id="color" name="color" class="form-control">
-                      <option value="" disabled selected>color</option>
-                      <option value="red">(R)</option>
-                      <option value="yellow">(Y)</option>
-                      <option value="green">(G)</option>
-                      <option value="blue">(B)</option>
-                      <option value="white">(W)</option>
-                    </select>
-                  </div>
-                </div>
-
-                
-                <button style="border: none; margin-top: 17px;" type='submit' formaction="/deleteCart" name="remove" onclick="decrease();" value="<%=post._id%>">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <%total += post.orderprice%> <%});%>
-
-
-
-      </div>
-      <div class="col-lg-5">
-
-        <div class="card text-white rounded-3" style="background-color:#880808;">
-          <div class="card-body">
-            <!--<div class="d-flex justify-content-between align-items-center mb-4">
-              <h5 class="mb-0">Card details</h5>
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" class="img-fluid rounded-3"
-                style="width: 45px;" alt="Avatar">
-            </div>
-
-            <p class="small mb-2">Card type</p>
-            <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-mastercard fa-2x me-2"></i></a>
-            <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-visa fa-2x me-2"></i></a>
-            <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-amex fa-2x me-2"></i></a>
-            <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
-
-
-            <div data-mdb-input-init class="form-outline form-white mb-4 mt-4">
-              <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                placeholder="Cardholder's Name" />
-              <label class="form-label" for="typeName">Cardholder's Name</label>
-            </div>
-
-            <div data-mdb-input-init class="form-outline form-white mb-4">
-              <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-              <label class="form-label" for="typeText">Card Number</label>
-            </div>
-
-            <div class="row mb-4">
-              <div class="col-md-6">
-                <div data-mdb-input-init class="form-outline form-white">
-                  <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YYYY" size="7"
-                    id="exp" minlength="7" maxlength="7" />
-                  <label class="form-label" for="typeExp">Expiration</label>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div data-mdb-input-init class="form-outline form-white">
-                  <input type="password" id="typeText" class="form-control form-control-lg"
-                    placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                  <label class="form-label" for="typeText">Cvv</label>
-                </div>
-              </div>
-            </div>-->
-
-
-
-            <hr class="my-4">
-
-            <!--<div class="d-flex justify-content-between">
-                          <p class="mb-2">Subtotal</p>
-                          <p class="mb-2">$4798.00</p>
+                              width: 100px;" 
+                                value="<%= post.orderprice %>"
+                                  class="orderBorder" readonly />
+                              </div>
+                              <% if (post.ordertitle === "mendress" || post.ordertitle === "dress") { %>
+                                <div class="form-group">
+                                  <select id="sizes" name="size" class="form-control correct">
+                                    <option value="" disabled selected>Size</option>
+                                    <option value="small">(S)</option>
+                                    <option value="medium">(M)</option>
+                                    <option value="large">(L)</option>
+                                    <option value="x-large">(XL)</option>
+                                    <option value="xx-large">(XXL)</option>
+                                  </select>
+                                </div>
+                              <% } %>
+                              <% if (post.ordertitle === "menfootwear" || post.ordertitle === "footwear") { %>
+                                <div class="form-group" style="width: 70px;">
+                                  <input type="number" id="size" name="size" class="form-control correct" placeholder="Size">
+                                </div>
+                              <% } %>
+                              <div class="form-group">
+                                <input type="number" id="quantity" name="quantity" class="form-control correct"
+                                  placeholder="Qty" style="width: 70px;">
+                              </div>
+                              <div class="form-group">
+                                <select id="color" name="color" class="form-control correct">
+                                  <option value="" disabled selected>Color</option>
+                                  <option value="red">(R)</option>
+                                  <option value="yellow">(Y)</option>
+                                  <option value="green">(G)</option>
+                                  <option value="blue">(B)</option>
+                                  <option value="white">(W)</option>
+                                </select>
+                              </div>
+                              <div style="margin-left: 5px; margin-top: 5px;">
+                                <button type="submit" formaction="/deleteCart" name="remove" onclick="decrease();"
+                                  value="<%= post._id %>" class="btn btn-link text-danger p-0 but">
+                                  <i class="fas fa-trash-alt"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-    
+                      </div>
+                      <% total += post.orderprice %>
+                    <% }); %>
+
+                </div>
+                <div class="col-lg-5">
+
+                  <div class="card text-white rounded-3" style="background-color:#880808;">
+                    <div class="card-body">
+
+                      <hr class="my-4">
+
+                      <div class="d-flex justify-content-between mb-4">
+                        <p class="mb-2">Total</p>
+                        <p class="mb-2">GHS&nbsp;
+                          <input name="totalprice" value="<%= total %>" class="border-0 bg-transparent"
+                            style="width: 40px;" readonly />
+                        </p>
+                      </div>
+
+                      <button type="submit" class="btn btn-info btn-block btn-lg" style="background-color: whitesmoke;">
                         <div class="d-flex justify-content-between">
-                          <p class="mb-2">Shipping</p>
-                          <p class="mb-2">$20.00</p>
-                        </div>-->
+                          <span>GHS&nbsp;<%= total %>.00</span>&nbsp;
+                          <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        </div>
+                      </button>
+                      </form>
+                    </div>
+                  </div>
 
-            <div class="d-flex justify-content-between mb-4">
-              <p class="mb-2">Total</p>
-              <p class="mb-2">GHS&nbsp;
-                <input name="totalprice" value="<%=total%>" style="
-                              border-top-style: hidden;
-                              border-left-style: hidden;
-                              border-right-style: hidden;
-                              border-bottom-style: hidden;
-                              outline: none;
-                              cursor: default;
-                              width: 40px; background:none;" readonly />
-              </p>
-            </div>
+                </div>
 
-            <button type="submit" data-mdb-button-init data-mdb-ripple-init
-             class="btn btn-info btn-block btn-lg" style="background-color: whitesmoke;">
-              <div class="d-flex justify-content-between">
-                <span>GHS&nbsp;<%=total%>.00</span>&nbsp;
-                <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
               </div>
-            </button>
-            </form>
+
+            </div>
           </div>
         </div>
-
       </div>
-
-    </div>
-
-    </div>
-    </div>
-    </div>
-    </div>
     </div>
   </section>
   <script>
     function continueShopping() {
-      // Check if the referrer exists and is different from the current page
+      // Check if there is a previous page in history
       if (document.referrer && document.referrer !== window.location.href) {
-        // Navigate to the referrer
-        window.location.href = document.referrer;
+        // Redirect back to the previous page
+        window.history.back();
       } else {
-        // Fallback: navigate to the homepage or another fallback URL
-        window.location.href = '/index'; // Change '/' to the appropriate fallback URL
+        // If there's no referrer or it's the same page, redirect to a default page (e.g., home page)
+        window.location.href = '/'; // Replace '/' with your desired default page URL
       }
     }
-
   </script>
-  <script>
-    // Get the image element
-    var image = document.getElementById('myImage');
-
-    // Get the input field
-    var inputField = document.getElementById('imageSource');
-
-    // Set the value of the input field to be the image's src
-    inputField.value = image.src;
-</script>
 </body>
 
 </html>

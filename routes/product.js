@@ -75,6 +75,7 @@ const ladiesSunglassesRouter = (req, res) => {
 
 const ladiesSunglassesOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -103,6 +104,7 @@ const ladiesFootwearRouter = (req, res) => {
 
 const ladiesFootwearOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -131,6 +133,7 @@ const ladiesDressRouter = (req, res) => {
 
 const ladiesDressOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -159,6 +162,7 @@ const ladiesBagsRouter = (req, res) => {
 
 const ladiesBagsOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -187,6 +191,7 @@ const ladiesWatchRouter = (req, res) => {
 
 const ladiesWatchesOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -215,6 +220,7 @@ const menWatchRouter = (req, res) => {
 
 const menWatchesOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -251,6 +257,7 @@ const menDressRouter = (req, res) => {
 
 const menDressOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -279,6 +286,7 @@ const menFootwearRouter = (req, res) => {
 
 const menFootwearOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -329,7 +337,7 @@ const deletePurchaseRouter = (req, res) => {
 }
 
 const cartpage = (req, res) => {
-  Order.find({}, (err, posts) => {
+  Order.find({userId: req.user.id}, (err, posts) => {
     res.render("cartpage", {
       postContent: posts,
       isAuthenticated: req.isAuthenticated(),
@@ -375,6 +383,7 @@ const uploadProductRouter = (req, res) => {
 
 const uploadOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -418,6 +427,7 @@ const uploadCartRouter = (req, res) => {
 
 const apartmentOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -438,6 +448,7 @@ const apartmentOrderRouter = (req, res) => {
 
 const houseOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
@@ -457,6 +468,7 @@ const houseOrderRouter = (req, res) => {
 
 const menOrderRouter = (req, res) => {
   const order = new Order({
+    userId: req.user.id,
     ordertitle: req.body.catBody,
     orderprice: req.body.priceBody,
     customer: req.body.userBody,
