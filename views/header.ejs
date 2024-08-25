@@ -30,47 +30,60 @@
 		<link type="text/css" rel="stylesheet" href="./css/accountbtn.css"/>
         
 		<script>
+			
 			const addCart = document.querySelectorAll(".order");
-		  
-			for (let i = 0; i < addCart.length; i++) {
-			  addCart[i].addEventListener('click', () => {
-				cartCount();
-			  });
+
+			for(var i = 0; i < addCart.length; i++){
+				addCart[i].addEventListener('click', () => {
+					cartCount();
+				});
 			}
-		  
+
 			function cartCount() {
-			  fetch('/cart/add', {
-				method: 'POST',
-			  })
-			  .then(response => response.json())
-			  .then(data => {
-				document.querySelector(".nav span").textContent = data.cartNumber;
-			  });
+				let productNumbers = localStorage.getItem("cartNumber");
+				productNumbers = parseInt(productNumbers);
+
+				if(productNumbers) {
+                  localStorage.setItem("cartNumber", productNumbers + 1);
+				  document.querySelector(".nav span").textContent = productNumbers + 1;
+				}
+				else {
+					localStorage.setItem("cartNumber", 1);
+					document.querySelector(".nav span").textContent = 1;
+				}
+
+				
 			}
-		  
+
 			function decrease() {
-			  fetch('/cart/decrease', {
-				method: 'POST',
-			  })
-			  .then(response => response.json())
-			  .then(data => {
-				document.querySelector(".nav span").textContent = data.cartNumber;
-			  });
+				let productNumbers = localStorage.getItem("cartNumber");
+				productNumbers = parseInt(productNumbers);
+
+				if(productNumbers) {
+                  localStorage.setItem("cartNumber", productNumbers - 1);
+				  document.querySelector(".nav span").textContent = productNumbers - 1;
+				}
+				else {
+					localStorage.setItem("cartNumber", 0);
+					document.querySelector(".nav span").textContent = 0;
+				}
+
+				
 			}
-		  
-			window.onload = function loadCartNumbers() {
-			  fetch('/cart/number')
-			  .then(response => response.json())
-			  .then(data => {
-				document.querySelector('.nav span').textContent = data.cartNumber;
-			  });
+			
+            window.onload = function loadCartNumbers(){
+				let productNumbers = localStorage.getItem("cartNumber");
+				if(productNumbers){
+					document.querySelector('.nav span').textContent = productNumbers;
+				}
 			}
-		  
-			function deleteRow(o) {
-			  var p = o.parentNode.parentNode;
-			  p.parentNode.removeChild(p);
+		   
+			function deleteRow(o){
+				var p = o.parentNode.parentNode;
+				    p.parentNode.removeChild(p);
 			}
-		  </script>
+
+		</script>
 		
 		
 		
