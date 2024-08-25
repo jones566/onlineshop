@@ -342,7 +342,6 @@ app.post('/logout', (req, res) => {
 });
 
 
-
 //The below lines of code connects you to either the cloud or local host 
 
 let port = process.env.PORT;
