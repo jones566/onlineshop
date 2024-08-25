@@ -337,14 +337,25 @@ const deletePurchaseRouter = (req, res) => {
 }
 
 const cartpage = (req, res) => {
-  Order.find({userId: req.user.id}, (err, posts) => {
-    res.render("cartpage", {
+  Order.find({ userId: req.user.id }, (err, posts) => {
+    if (err) {
+      console.error('Error fetching cart items:', err); // Log the error for debugging purposes
+      return res.status(500).render('errorPage', {
+        message: 'There was an error retrieving your cart items. Please login or register before accessing this page.',
+        error: err,
+        isAuthenticated: req.isAuthenticated(),
+        user: req.user
+      });
+    }
+
+    res.render('cartpage', {
       postContent: posts,
       isAuthenticated: req.isAuthenticated(),
       user: req.user
     });
   });
 };
+
 
 const checkoutpage = (req, res) => {
   Order.find({}, (err, posts) => {

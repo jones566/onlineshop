@@ -30,60 +30,63 @@
 		<link type="text/css" rel="stylesheet" href="./css/accountbtn.css"/>
         
 		<script>
-			
 			const addCart = document.querySelectorAll(".order");
-
-			for(var i = 0; i < addCart.length; i++){
+		
+			for (var i = 0; i < addCart.length; i++) {
 				addCart[i].addEventListener('click', () => {
 					cartCount();
 				});
 			}
-
+		
 			function cartCount() {
 				let productNumbers = localStorage.getItem("cartNumber");
 				productNumbers = parseInt(productNumbers);
-
-				if(productNumbers) {
-                  localStorage.setItem("cartNumber", productNumbers + 1);
-				  document.querySelector(".nav span").textContent = productNumbers + 1;
-				}
-				else {
+		
+				if (productNumbers) {
+					localStorage.setItem("cartNumber", productNumbers + 1);
+					document.querySelector(".nav span").textContent = productNumbers + 1;
+				} else {
 					localStorage.setItem("cartNumber", 1);
 					document.querySelector(".nav span").textContent = 1;
 				}
-
-				
 			}
-
+		
 			function decrease() {
 				let productNumbers = localStorage.getItem("cartNumber");
 				productNumbers = parseInt(productNumbers);
-
-				if(productNumbers) {
-                  localStorage.setItem("cartNumber", productNumbers - 1);
-				  document.querySelector(".nav span").textContent = productNumbers - 1;
-				}
-				else {
+		
+				if (productNumbers) {
+					localStorage.setItem("cartNumber", productNumbers - 1);
+					document.querySelector(".nav span").textContent = productNumbers - 1;
+				} else {
 					localStorage.setItem("cartNumber", 0);
 					document.querySelector(".nav span").textContent = 0;
 				}
-
-				
 			}
-			
-            window.onload = function loadCartNumbers(){
+		
+			window.onload = function loadCartNumbers() {
 				let productNumbers = localStorage.getItem("cartNumber");
-				if(productNumbers){
+				if (productNumbers) {
 					document.querySelector('.nav span').textContent = productNumbers;
+				} else {
+					document.querySelector('.nav span').textContent = 0; // Reset cart count to 0
 				}
 			}
-		   
-			function deleteRow(o){
+		
+			function deleteRow(o) {
 				var p = o.parentNode.parentNode;
-				    p.parentNode.removeChild(p);
+				p.parentNode.removeChild(p);
 			}
-
+		
+			function resetCartForNewUser() {
+				localStorage.removeItem('cartNumber'); // Clear cartNumber from localStorage
+				document.querySelector('.nav span').textContent = 0; // Reset the cart icon count to 0
+			}
+		
+			// Example call after user login or registration
+			// resetCartForNewUser();
 		</script>
+		
 		
 		
 		
