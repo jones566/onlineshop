@@ -2391,3 +2391,25 @@ background: linear-gradient(to bottom, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, 
     z-index: 3;
 
 }
+@media screen and (min-width: 768px) and (max-width: 768px) {
+  .product-row {
+    width: 700px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1024px) {
+  .product-row {
+    width: 945px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 499px) {
+  .footershift {
+    margin-left: 70px;
+    
+  }
+  #catego {
+    
+    margin-top: 10px;
+  }
+}
