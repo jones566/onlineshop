@@ -12,6 +12,9 @@
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
 
@@ -136,6 +139,29 @@
 			width: 50px;
 			margin-top: 40px;
 		}
+ 
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        .my-float {
+            margin-top: 16px;
+        }
+		#whatsapp:visited {
+            color: #FFF;
+        } 
+
 	</style>
 
 </head>
@@ -377,93 +403,11 @@
 		<!-- /container -->
 	</div>
 
+    <a id="whatsapp" href="https://api.whatsapp.com/send?phone=233599753911&text=Hello,how%20much%20is%20this%20one?" class="float" target="_blank">
+		<i class="fa fa-whatsapp my-float"></i>
+	  </a>
 
-
-	<footer id="footer">
-		<!-- top footer -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-3 col-xs-6">
-						<div class="footer footershift">
-							<h3 class="footer-title">About Us</h3>
-
-							<ul class="footer-links">
-								<li style="font-weight: normal;">
-								  <i class="fa fa-map-marker"></i>
-								  Obuasi<br>
-								  Ghana<br>
-								  Africa<br>
-								  SK-2B
-								</li>
-								<li style="font-weight: normal; color: black;">
-								  <i class="fa fa-phone"></i>
-								  +233 599 753 911
-								</li>
-								<li>
-								  <a href="mailto:adwoaampong62@gmail.com">
-									<i class="fa fa-envelope-o"></i>
-									adwoaampong62@gmail.com
-								  </a>
-								</li>
-							  </ul>
-							  
-						</div>
-					</div>
-					<div class="col-md-6 text-center" style="margin-top:80px;">
-						<div class="footer">
-							<div class="newsletter">
-
-								<ul class="newsletter-follow">
-									<li>
-										<a href="#"><i class="fa fa-facebook"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-									</li>
-									<li>
-										<a href="#"><i class="fa fa-instagram"></i></a>
-									</li>
-
-								</ul>
-							</div>
-
-							<span class="copyright" style="font-weight: normal; color: #1E1F29; ">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;
-								<script>document.write(new Date().getFullYear());</script> All rights reserved
-
-							</span>
-
-						</div>
-					</div>
-
-					<div class="col-md-3 col-xs-6">
-						<div class="footer footershift">
-							<h3 class="footer-title">Categories</h3>
-							<ul class="footer-links">
-								<li><a href="men">Men's wear</a></li>
-								<li><a href="ladies">Ladies wear</a></li>
-						</div>
-					</div>
-
-					<div class="clearfix visible-xs"></div>
-
-
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /top footer -->
-
-
-		<!-- bottom footer -->
-
-		<!-- /bottom footer -->
-	</footer>
+	
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/slick.min.js"></script>
